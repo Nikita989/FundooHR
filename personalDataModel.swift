@@ -20,6 +20,7 @@ class personalDataModel: NSObject {
     var mumbaiAddressModel:String?
     var occupationModel:String?
     var permenantAddress:String?
+//    var empName:String?
     
     init(annualSalary:String,dob:String,email:String,empName:String,fatherMobile:String,fatherName:String,mobile:String,mumbaiAddr:String,occupation:String,permanantAddr:String) {
         self.annualSalaryModel = annualSalary
@@ -32,6 +33,7 @@ class personalDataModel: NSObject {
         self.mumbaiAddressModel = mumbaiAddr
         self.occupationModel = occupation
         self.permenantAddress = permanantAddr
+        
         
         
     }

@@ -14,7 +14,7 @@ class personalDataServices: NSObject {
     
     func fetchPersonalDataFromDatabase()
     {
-        Alamofire.request("http://192.168.0.171:3000/readEmployeePersonalData?token=fghf&engineerId=427188EI").responseJSON
+        Alamofire.request("http://192.168.0.118:3000/readEmployeePersonalData?token=fghf&engineerId=427201EI").responseJSON
             { response in
                 print("value----",response.result.value)
                 
@@ -38,6 +38,7 @@ class personalDataServices: NSObject {
                     let val = jsonData["personalData"] as! NSDictionary
                     let annualSalary = val["annualSalary"] as! String
                     let emailId = val["emailId"] as! String
+//                    let name = val["employeeName"] as! String
                     let dateOfBirth = val["dateOfBirth"] as! String
                     let employeeName = val["employeeName"] as! String
                     let fatherMobile = val["fatherMobile"] as! String
@@ -63,8 +64,8 @@ class personalDataServices: NSObject {
     
     func updatePersonalData(personalData:personalDataModel)
     {
-        let urlString: String = "http://192.168.0.171:3000/updateEmployeePersonalData"
-        let params = ["token":"1a285sdffd8do8fd","engineerId":"427188EI","annualSalary":(personalData.annualSalaryModel),"dateOfBirth": (personalData.dateOfBirthModel), "emailId" : (personalData.emailIdModel),"employeeName":(personalData.employeeNameModel),"fatherMobile":(personalData.fatherMobileModel),"fatherName":(personalData.fatherNameModel),"mobile":(personalData.mobileModel),"mumbaiAddress":(personalData.mumbaiAddressModel),"occupation":(personalData.occupationModel),"permenantAddress":(personalData.permenantAddress)]
+        let urlString: String = "http://192.168.0.118:3000/updateEmployeePersonalData"
+        let params = ["token":"1a285sdffd8do8fd","engineerId":"427201EI","annualSalary":(personalData.annualSalaryModel),"dateOfBirth": (personalData.dateOfBirthModel), "emailId" : (personalData.emailIdModel),"employeeName":(personalData.employeeNameModel),"fatherMobile":(personalData.fatherMobileModel),"fatherName":(personalData.fatherNameModel),"mobile":(personalData.mobileModel),"mumbaiAddress":(personalData.mumbaiAddressModel),"occupation":(personalData.occupationModel),"permenantAddress":(personalData.permenantAddress)]
         Alamofire.request(urlString, method: .put, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 print("--res/Users/bridgeit/Desktop/Xcode_8.1.zipponse--",response)

@@ -13,7 +13,7 @@ class profileDataServices: NSObject {
     var controllerProtocol:profileControllerProtocol?
     func fetchProfileDataFromDataBase()
     {
-        Alamofire.request("http://192.168.0.171:3000/readEmployeeProfileData?token=fghf&engineerId=427188EI").responseJSON
+        Alamofire.request("http://192.168.0.118:3000/readEmployeeProfileData?token=fghf&engineerId=427201EI").responseJSON
             { response in
                 print("value----",response.result.value)
                 
@@ -64,8 +64,8 @@ class profileDataServices: NSObject {
     
     func updateProfileData(profilData:profileDataModel)
     {
-        let urlString: String = "http://192.168.0.171:3000/updateEmployeeProfileData"
-        let params = ["token":"1a285sdffd8do8fd","engineerId":"427188EI","aggregateIn": (profilData.aggregate), "degree" : (profilData.degree),"diploma":(profilData.diploma),"discipline":(profilData.discipline),"finalYearPercentage":(profilData.finalYearPercentage),"training":(profilData.training),"trainingInstitute":(profilData.trainingInstitute),"trainingPeriod":(profilData.trainingDuration),"yearOfPassing":(profilData.yearOfPassing)]
+        let urlString: String = "http://192.168.0.118:3000/updateEmployeeProfileData"
+        let params = ["token":"1a285sdffd8do8fd","engineerId":"427201EI","aggregateIn": (profilData.aggregate), "degree" : (profilData.degree),"diploma":(profilData.diploma),"discipline":(profilData.discipline),"finalYearPercentage":(profilData.finalYearPercentage),"training":(profilData.training),"trainingInstitute":(profilData.trainingInstitute),"trainingPeriod":(profilData.trainingDuration),"yearOfPassing":(profilData.yearOfPassing)]
         Alamofire.request(urlString, method: .put, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 print("--response--",response)

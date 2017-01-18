@@ -21,7 +21,8 @@ class attendanceViewModel: NSObject,attendanceViewModelProtocol {
     
     func sendMonthlyAttendanceToView(keysArray:[String],valArray:[attendanceModel])
     {
-        
+        print(keysArray)
+        print(valArray)
         attendanceViewProc?.calendarReload(keysArr: keysArray, valArray: valArray)
     }
     

@@ -15,7 +15,7 @@ class enggInfoServices: NSObject {
     func fetchDataFromDataBase()
     {
         
-        Alamofire.request("http://192.168.0.171:3000/readEmployeeTrackingData?token=fghf&engineerId=427188EI").responseJSON
+        Alamofire.request("http://192.168.0.118:3000/readEmployeeTrackingData?token=fghf&engineerId=427201EI").responseJSON
             { response in
                 print("value----",response.result.value)
                 

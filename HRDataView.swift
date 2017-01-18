@@ -30,7 +30,9 @@ class HRDataView: UIView {
     @IBOutlet var tf18:UITextField?
     @IBOutlet var tf19:UITextField?
     @IBOutlet var tf20:UITextField?
-    
+    @IBOutlet var companyTextField:UITextField?
+    @IBOutlet var employeeStatusTextField:UITextField?
+
     
     @IBOutlet var HrSaveBtn:UIButton?
     @IBOutlet var HrCancelBtn:UIButton?

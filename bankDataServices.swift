@@ -16,7 +16,7 @@ class bankDataServices: NSObject {
     {
         
         
-        Alamofire.request("http://192.168.0.171:3000/readEmployeeBankData?token=fghf&engineerId=427188EI").responseJSON
+        Alamofire.request("http://192.168.0.118:3000/readEmployeeBankData?token=fghf&engineerId=427201EI").responseJSON
             {
                 response in
                 print("value----",response.result.value)
@@ -60,8 +60,8 @@ class bankDataServices: NSObject {
 
     func updateBankData(bankData:bankDataModel)
     {
-        let urlString: String = "http://192.168.0.171:3000/updateEmployeeBankData"
-        let params = ["token":"1a285sdffd8do8fd","engineerId":"427188EI","accountNumber": (bankData.accNumber), "bankName" : (bankData.bankName),"ifscCode":(bankData.bankIfscCode),"pan":(bankData.bankPan),"paySalary":(bankData.BankPaySalary),"reason":(bankData.reason)]
+        let urlString: String = "http://192.168.0.118:3000/updateEmployeeBankData"
+        let params = ["token":"1a285sdffd8do8fd","engineerId":"427201EI","accountNumber": (bankData.accNumber), "bankName" : (bankData.bankName),"ifscCode":(bankData.bankIfscCode),"pan":(bankData.bankPan),"paySalary":(bankData.BankPaySalary),"reason":(bankData.reason)]
         Alamofire.request(urlString, method: .put, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 print("--response--",response)

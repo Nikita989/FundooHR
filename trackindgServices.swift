@@ -14,7 +14,7 @@ class trackingServices: NSObject {
     func fetchDataFromDataBase()
     {
         
-        Alamofire.request("http://192.168.0.171:3000/readEmployeeTrackingData?token=fghf&engineerId=427188EI").responseJSON
+        Alamofire.request("http://192.168.0.118:3000/readEmployeeTrackingData?token=fghf&engineerId=427201EI").responseJSON
             {
                 response in
                 print("value----",response.result.value!)
@@ -61,8 +61,8 @@ class trackingServices: NSObject {
 
     func updateTrackingData(trackingData:trackingDataModel)
     {
-        let urlString: String = "http://192.168.0.171:3000/updateEmployeeTrackingData"
-        let params = ["token":"1a285sdffd8do8fd","engineerId":"427188EI","bridgelabzEndDate": (trackingData.endDate), "bridgelabzStartDate" : (trackingData.startDate),"currentWeek":(trackingData.currentWeek),"numberOfWeeksLeft":(trackingData.noOfWeeksLeft),"techStack":(trackingData.techStack),"week1":(trackingData.week)]
+        let urlString: String = "http://192.168.0.118:3000/updateEmployeeTrackingData"
+        let params = ["token":"1a285sdffd8do8fd","engineerId":"427201EI","bridgelabzEndDate": (trackingData.endDate), "bridgelabzStartDate" : (trackingData.startDate),"currentWeek":(trackingData.currentWeek),"numberOfWeeksLeft":(trackingData.noOfWeeksLeft),"techStack":(trackingData.techStack),"week1":(trackingData.week)]
         Alamofire.request(urlString, method: .put, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 print("--response--",response)

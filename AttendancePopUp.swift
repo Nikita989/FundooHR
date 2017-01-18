@@ -13,7 +13,9 @@ class AttendancePopUp: UIView {
     @IBOutlet var inTimeLabel:UILabel!
     @IBOutlet var outTimeLabel:UILabel!
     @IBOutlet var markedStatusLabel:UILabel!
-    @IBOutlet var LeaveReasonLabel:UILabel!
+    @IBOutlet var leaveReasonTextView:UITextView!
     @IBOutlet var dateLabel:UILabel!
+    @IBOutlet var attendanceStatusLabel:UILabel!
+
     
 }

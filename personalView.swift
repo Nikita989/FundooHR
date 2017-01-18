@@ -21,6 +21,8 @@ class personalView: UIView {
     @IBOutlet var tf9:UITextField?
     @IBOutlet var tf10:UITextField?
     
+    @IBOutlet var nameTextField:UITextField?
+
     @IBOutlet var personalSaveBtn:UIButton?
     @IBOutlet var personalCancelBtn:UIButton?
     

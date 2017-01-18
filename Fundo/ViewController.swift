@@ -16,6 +16,9 @@ import CoreData
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,bankviewProtocol,personalviewProtocal,profileViewProtocal,trackingViewProtocol,enggInfoViewProtocol,hrviewProtocal,attendanceViewProtocol{
 
+    
+    @IBOutlet weak var employeeNameLabel: UILabel!
+    
     @IBOutlet weak var inOutTimeView: UIView!
     @IBOutlet weak var reasonView: UIView!
     @IBOutlet weak var attendanceCollectionView: UICollectionView!
@@ -81,6 +84,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var outTime:String?
     var reason:String?
     var timestamp2:Double!
+    var dateObj:Date?
+    var currentTimeStamp:Double!
+    var didSelectDate:Bool = false
     let menuOptions : [String] = ["Attendance Details","Personal Details","Profile Details","HR Details","Bank Details","Tracking Details"]
     var monthArray:NSMutableArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
     var yearArray:NSMutableArray = ["2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035", "2036", "2037"]
@@ -126,7 +132,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             self.attendancePopupOutlet.isHidden = true
             self.blurView.isHidden = true
             self.addSubView(selectedIndex: 6)
-
             tableView?.delegate = self
             tableView?.dataSource = self
             bankViewModelObj.viewControllerProc = self
@@ -136,6 +141,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             trackingViewModelObj.trackingViewProc = self
             enggInfoObj.enggViewProc = self
             attendanceViewModelObj.attendanceViewProc = self
+            let dateFormatterObj = DateFormatter()
+            dateFormatterObj.setLocalizedDateFormatFromTemplate("MMMMyyyy")
+            let currentDate = dateFormatterObj.string(from: Date())
+            let date = dateFormatterObj.date(from: currentDate)
+            currentTimeStamp = (date?.timeIntervalSince1970)! * 1000
     }
     
     // ADDING GESTURE RECOGNIZER TO THE BLUR VIEW
@@ -240,8 +250,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     {
         switch selectedIndex {
         case 0:
+         first = true
+         attendanceViewModelObj.fetchMonthlyAttendanceFromController(timeStamp: currentTimeStamp)
           scrollView.contentSize = CGSize(width: self.view.frame.width, height: 1500)
-
           attendanceOutlet.superview?.bringSubview(toFront: attendanceOutlet)
           attendanceOutlet.isHidden = false
           personalOutlet.isHidden = true
@@ -280,6 +291,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             
         case 3:
             hrDataViewModelVar.fetchHrDataFromController()
+            scrollView.contentSize = CGSize(width: self.view.frame.width, height: 1800)
             attendanceOutlet.isHidden = true
             personalOutlet.isHidden = true
             profileOutlet.isHidden = true
@@ -287,8 +299,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             bankOutlet.isHidden = true
             trackingOutlet.isHidden = true
             hrDataOutlet.superview?.bringSubview(toFront: hrDataOutlet)
-            
-            scrollView.contentSize = CGSize(width: self.view.frame.width, height: 1300)
             self.view.layoutIfNeeded()
             break
             
@@ -418,22 +428,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         personalOutlet.tf10?.isUserInteractionEnabled = false
         print("printed")
         personalOutlet.personalEditBtn?.imageView?.image = UIImage(named: "editbtn")
-        let personalData1 = personalOutlet.tf1?.text
-        let personalData2 = personalOutlet.tf2?.text
-        let personalData3 = personalOutlet.tf3?.text
-        let personalData4 = personalOutlet.tf4?.text
-        let personalData5 = personalOutlet.tf5?.text
-        let personalData6 = personalOutlet.tf6?.text
-        let personalData7 = personalOutlet.tf7?.text
-        let personalData8 = personalOutlet.tf8?.text
-        let personalData9 = personalOutlet.tf9?.text
+        let personalData1 = personalOutlet.tf8?.text
+        let personalData2 = personalOutlet.tf4?.text
+        let personalData3 = personalOutlet.tf2?.text
+        let personalData5 = personalOutlet.tf6?.text
+        let personalData6 = personalOutlet.tf5?.text
+        let personalData7 = personalOutlet.tf3?.text
+        let personalData8 = personalOutlet.tf9?.text
+        let personalData9 = personalOutlet.tf7?.text
         let personalData10 = personalOutlet.tf10?.text
-        let personalObj = personalDataModel(annualSalary: personalData1!,dob: personalData2!,email: personalData3!,empName: personalData4!,fatherMobile: personalData5!,fatherName: personalData6!,mobile: personalData7!,mumbaiAddr: personalData8!,occupation: personalData9!,permanantAddr: personalData10!)
+        let employeeName = personalOutlet.nameTextField?.text
+        let personalObj = personalDataModel(annualSalary: personalData1!,dob: personalData2!,email: personalData3!,empName:employeeName!,fatherMobile: personalData5!,fatherName: personalData6!,mobile: personalData7!,mumbaiAddr: personalData8!,occupation: personalData9!,permanantAddr: personalData10!)
         personalViewModelVar.sendUpdatedPersonalDataToController(personalData: personalObj)
-        
-
-
-        
     }
     
     
@@ -449,11 +455,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         personalOutlet.tf8?.isUserInteractionEnabled = true
         personalOutlet.tf9?.isUserInteractionEnabled = true
         personalOutlet.tf10?.isUserInteractionEnabled = true
-        
+        personalOutlet.nameTextField?.isUserInteractionEnabled = true
         personalOutlet.personalSaveBtn?.isHidden = false
         personalOutlet.personalCancelBtn?.isHidden = false
-        
-         personalOutlet.personalEditBtn?.setImage(UIImage.init(named: "mode_edit - material"), for: .normal)
+        personalOutlet.personalEditBtn?.setImage(UIImage.init(named: "mode_edit - material"), for: .normal)
 
     }
     
@@ -624,6 +629,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         hrDataOutlet.tf18?.isUserInteractionEnabled = true
         hrDataOutlet.tf19?.isUserInteractionEnabled = true
         hrDataOutlet.tf20?.isUserInteractionEnabled = true
+        hrDataOutlet.companyTextField?.isUserInteractionEnabled = true
+        hrDataOutlet.employeeStatusTextField?.isUserInteractionEnabled = true
         hrDataOutlet.HrCancelBtn?.isHidden = false
         hrDataOutlet.HrSaveBtn?.isHidden = false
         hrDataOutlet.HrEditBtn?.setImage(UIImage.init(named: "mode_edit - material"), for: .normal)
@@ -667,9 +674,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let hrData9 = hrDataOutlet.tf9?.text
         let hrData10 = hrDataOutlet.tf10?.text
         let hrData11 = hrDataOutlet.tf11?.text
+        let companyVal = hrDataOutlet.companyTextField?.text
+        let status = hrDataOutlet.employeeStatusTextField?.text
         let hrData12 = hrDataOutlet.tf12?.text
         let hrData13 = hrDataOutlet.tf13?.text
-        let hrObj = hrDataModel(startDate: hrData3!,contractInitiated: hrData8!,contractSigned: hrData9!,company:"",companyJoinDate: hrData4!,companyLeaveDate: hrData5!,contractSignDate: hrData10!,employeeStatus:"",enggContractInitiated: hrData7!,enggContractSigned: hrData6!,fellowshipPeriod: hrData2!,hiringCity: hrData1!,initiateTransfer: hrData11!)
+        let hrObj = hrDataModel(startDate: hrData3!,contractInitiated: hrData8!,contractSigned: hrData9!,company:companyVal!,companyJoinDate: hrData4!,companyLeaveDate: hrData5!,contractSignDate: hrData10!,employeeStatus:status!,enggContractInitiated: hrData7!,enggContractSigned: hrData6!,fellowshipPeriod: hrData2!,hiringCity: hrData1!,initiateTransfer: hrData11!)
         
         hrDataViewModelVar.sendUpdatedHrDataToController(hrData: hrObj)
 
@@ -710,37 +719,27 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     // MARK:attendanceBtns
-    @IBAction func AttendanceEditBtn(_ sender: UIButton) {
-        
+       @IBAction func AttendanceEditBtn(_ sender: UIButton) {
         attendanceOutlet.attendanceEditBtn?.setImage(UIImage.init(named: "mode_edit - material"), for: .normal)
         flag = true
         attendanceOutlet.attendanceCancelBtn?.isHidden = false
         attendanceOutlet.attendanceSaveBtn?.isHidden = false
-        print("************Toast*******************")
-        
-    }
-    
-    
+        }
     
     @IBAction func attendanceMarkOkBtn(_ sender: UIButton) {
-        
         inOutTimeView.isHidden = true
         inTime = attendanceOutlet.inTextField?.text
         outTime = attendanceOutlet.outTextField?.text
-
-        
     }
     
     
     
     @IBAction func AttendanceSaveBtnPressed(_ sender: UIButton) {
-        
         attendanceOutlet.attendanceCancelBtn?.isHidden = true
         attendanceOutlet.attendanceSaveBtn?.isHidden = true
         attendanceOutlet.attendanceEditBtn?.imageView?.image = UIImage(named: "editbtn")
         customPicker.isUserInteractionEnabled = true
         self.attendanceViewModelObj.fetchMonthlyAttendanceFromController(timeStamp: self.timeStamp!)
-//        calenderView.reloadData()
         let status = String(describing:markedStatus)
         let timeStampString = String(describing: timestamp2!)
         print(timeStampString)
@@ -749,7 +748,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         print(inTime)
         print(outTime)
         print(reason)
-      let attendanceObj = attendancePopUpModel(timeStampVar:timeStampString,enggId: "",attendanceStatusVar: selectedAttendance!,markedStatusVar: status,punchInVar: inTime!,punchOutVar: outTime!,reasonVar: reason!)
+        let attendanceObj = attendancePopUpModel(timeStampVar:timeStampString,enggId: "",attendanceStatusVar: selectedAttendance!,markedStatusVar: status,punchInVar: inTime!,punchOutVar: outTime!,reasonVar: reason!)
         attendanceViewModelObj.setUpdatedAttendanceToController(attendanceData: attendanceObj)
         
         
@@ -762,6 +761,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         attendanceOutlet.attendanceSaveBtn?.isHidden = true
         customPicker.isUserInteractionEnabled = true
         attendanceOutlet.attendanceEditBtn?.imageView?.image = UIImage(named: "editbtn")
+        attendanceCollectionView.isHidden = true
     }
     
     
@@ -796,7 +796,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func setPersonalData()
     {
-        
         personalOutlet.tf2?.text = personalViewModelVar.personalValues?.emailIdModel
         personalOutlet.tf3?.text = personalViewModelVar.personalValues?.mobileModel
         personalOutlet.tf4?.text = personalViewModelVar.personalValues?.dateOfBirthModel
@@ -806,6 +805,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         personalOutlet.tf8?.text = personalViewModelVar.personalValues?.annualSalaryModel
         personalOutlet.tf9?.text = personalViewModelVar.personalValues?.mumbaiAddressModel
         personalOutlet.tf10?.text = personalViewModelVar.personalValues?.permenantAddress
+        personalOutlet.nameTextField?.text = personalViewModelVar.personalValues?.employeeNameModel
         
 
     }
@@ -840,6 +840,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         trackingOutlet.tf3?.text = trackingViewModelObj.trackingValues?.endDate
         trackingOutlet.tf4?.text = trackingViewModelObj.trackingValues?.currentWeek
         trackingOutlet.tf5?.text = trackingViewModelObj.trackingValues?.noOfWeeksLeft
+        trackingOutlet.tf6?.text = trackingViewModelObj.trackingValues?.week
         //            trackingOutlet.tf6?.text = trackingViewModelObj.trackingValues?.techStack
     }
     
@@ -852,6 +853,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         engineerInfoOutlet.tf7?.text = enggInfoObj.enggInfoValues?.cmpJoinDate
         engineerInfoOutlet.tf8?.text = enggInfoObj.enggInfoValues?.cmpLeaveDate
         leavesTaken = enggInfoObj.enggInfoValues?.leaveTaken
+        let leaveString = String(leavesTaken)
+        engineerInfoOutlet.tf9?.text = leaveString
+        employeeNameLabel.text = enggInfoObj.enggInfoValues?.empName
         //             myString = String(describing: leavesTaken!)
         //            engineerInfoOutlet.tf9!.text = myString
 
@@ -870,6 +874,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         hrDataOutlet.tf9?.text = hrDataViewModelVar.hrValues?.contractSignedModel
         hrDataOutlet.tf10?.text = hrDataViewModelVar.hrValues?.contractSignDateModel
         hrDataOutlet.tf11?.text = hrDataViewModelVar.hrValues?.initiateTransferModel
+        hrDataOutlet.companyTextField?.text = hrDataViewModelVar.hrValues?.companyModel
+        hrDataOutlet.employeeStatusTextField?.text = hrDataViewModelVar.hrValues?.employeeStatusModel
         }
     
     //************* ATTENDANCE MARK IMAGE COLLECTION VIEW ***********************
@@ -917,8 +923,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        
-        attendanceMarkView.isHidden = true
+        attendanceCollectionView.isHidden = true
         attendanceOutlet.attendanceCancelBtn?.isHidden = false
         attendanceOutlet.attendanceSaveBtn?.isHidden = false
         markedStatus = true
@@ -954,13 +959,9 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             reason = "NA"
             inTime = "NA"
             outTime = "NA"
-            
-
-            
-        }
+            }
         
         if indexPath.row == 2 {
-            
             blurView.isHidden = true
             check2 = true
             inOutTimeView.isHidden = false
@@ -977,22 +978,17 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
             cellImage = UIImage(named: "ion-checkmark-round - Ionicons")
             selectedAttendance = "Present"
             reason = "NA"
-
-
-            
         }
         
         if indexPath.row == 3 {
             blurView.isHidden = true
             check3 = true
             cellImage = UIImage(named: "ion-alert - Ionicons")
-            selectedAttendance = ""
+            selectedAttendance = "Unmarked"
             reason = "NA"
             inTime = "NA"
             outTime = "NA"
-            
-
-            
+            markedStatus = false
         }
         
         
@@ -1003,8 +999,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     {
         self.attendanceKeys = keysArr
         self.attendanceValues = valArray
-        print(keysArr)
-        print(valArray)
+        print("******************",attendanceKeys!)
+        print("&&&&&&&&&&&&&&&&&&",attendanceValues!)
         calenderView.reloadData()
     }
     
@@ -1048,21 +1044,19 @@ extension ViewController : JTAppleCalendarViewDelegate
         
         if cellState.dateBelongsTo == .thisMonth
         {
+            myCustomCell.markImageView.isHidden = false
             valueSet = false
             myCustomCell.dayLabel.textColor =  UIColor(colorWithHexValue: 0x6FB8D9)
             
             if first == true {
-            
-//            let keyStr = String(describing: key)
-            
             let dateObj = DateFormatter()
             dateObj.dateFormat = "d"
-           let dateString = dateObj.string(from: cellState.date)
-                if attendanceKeys?.count != 0{
+            let dateString = dateObj.string(from: cellState.date)
+                print(attendanceKeys?.count)
+                if (attendanceKeys?.count)! != 0{
                 for i in 0..<attendanceKeys!.count{
                 let key = attendanceKeys?[i]
                 if dateString == key {
-//                    let iKey = Int(key!)
                 let value = attendanceValues?[i]
                     if value?.attendanceStatus == "Leave" && value?.markedStatus == "true"
                     {
@@ -1083,17 +1077,31 @@ extension ViewController : JTAppleCalendarViewDelegate
                         myCustomCell.markImageView.image = UIImage(named: "C")
                         self.valueSet = true
                     }
+                        
+                    else if value?.attendanceStatus == "Unmarked" && value?.markedStatus == "false"
+                    {
+                        
+                        myCustomCell.markImageView.image = UIImage(named: "ion-alert - Ionicons")
+                        self.valueSet = true
+                    }
+
             
                 }
+            
                 }
                 
                 
                 if valueSet == false
                 {
-                    myCustomCell.markImageView.image = UIImage(named: "ion-alert - Ionicons")
-                }
-                }
+                    myCustomCell.markImageView.isHidden = true
 
+                }
+                }
+          else
+                {
+                    myCustomCell.markImageView.isHidden = true
+                    
+                }
             }
             
         }
@@ -1146,8 +1154,9 @@ extension ViewController : JTAppleCalendarViewDelegate
                     let values = attendanceValues?[i]
                     attendancePopupOutlet.inTimeLabel.text = values?.punchIn
                     attendancePopupOutlet.outTimeLabel.text = values?.punchOut
-                    attendancePopupOutlet.LeaveReasonLabel.text = values?.reason
+                    attendancePopupOutlet.leaveReasonTextView.text = values?.reason
                     attendancePopupOutlet.markedStatusLabel.text = values?.markedStatus
+                  attendancePopupOutlet.attendanceStatusLabel.text = values?.attendanceStatus
                     
                 }
             
@@ -1174,7 +1183,7 @@ extension ViewController : JTAppleCalendarViewDelegate
             formatter.setLocalizedDateFormatFromTemplate("dd MMMM yyyy")
             date1 = formatter.string(from: cellState.date)
             print("*******************",date1)
-            attendanceMarkView.isHidden = false
+            attendanceCollectionView.isHidden = false
             blurView.isHidden = false
             flag = false
             check0 = false
@@ -1185,6 +1194,7 @@ extension ViewController : JTAppleCalendarViewDelegate
             formatter2.setLocalizedDateFormatFromTemplate("dd MMMM yyyy")
             let date2 = formatter2.date(from: date1!)
             timestamp2 = (date2?.timeIntervalSince1970)! * 1000
+//             self.attendanceViewModelObj.fetchMonthlyAttendanceFromController(timeStamp: timestamp2)
 
         }
         
@@ -1271,10 +1281,10 @@ extension ViewController : UIPickerViewDelegate
              self.timeStamp = myDate!.timeIntervalSince1970 * 1000
             print("**********timestamp is",self.timeStamp!)
             self.attendanceViewModelObj.fetchMonthlyAttendanceFromController(timeStamp: self.timeStamp!)
+        
+        self.first = true
+        self.dateChange = true
         }
-        //        self.calenderView
-        first = true
-        dateChange = true
         
     }
 }

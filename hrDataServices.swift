@@ -16,7 +16,7 @@ class hrDataServices: NSObject {
     func fetchHrDataFromDatabase()
     {
         
-        Alamofire.request("http://192.168.0.171:3000/readEmployeeHRData?token=fghf&engineerId=427188EI").responseJSON
+        Alamofire.request("http://192.168.0.118:3000/readEmployeeHRData?token=fghf&engineerId=427201EI").responseJSON
             { response in
                 print("value----",response.result.value)
                 switch response.result
@@ -59,8 +59,8 @@ class hrDataServices: NSObject {
     
     func updateHrData(hrData:hrDataModel)
     {
-        let urlString: String = "http://192.168.0.171:3000/updateEmployeeHRData"
-        let params = ["token":"1a285sdffd8do8fd","engineerId":"427188EI","blStartDate": (hrData.startDateModel), "compContractInitiated" : (hrData.contractInitiatedModel),"compContractSigned":(hrData.contractSignedModel),"company":"","companyJoinDate":(hrData.companyJoinDateModel),"companyLeaveDate":(hrData.companyLeaveDateModel),"contractSignDate":(hrData.contractSignDateModel),"employeeStatus":"Fellowship","enggContractInitiated":(hrData.enggContractInitiatedModel),"enggContractSigned":(hrData.enggContractSignedModel),"fellowshipPeriod":(hrData.fellowshipPeriodModel),"hiringCity":(hrData.hiringCityModel),"initiateTransfer":""]
+        let urlString: String = "http://192.168.0.118:3000/updateEmployeeHRData"
+        let params = ["token":"1a285sdffd8do8fd","engineerId":"427201EI","blStartDate": (hrData.startDateModel), "compContractInitiated" : (hrData.contractInitiatedModel),"compContractSigned":(hrData.contractSignedModel),"company":hrData.companyModel,"companyJoinDate":(hrData.companyJoinDateModel),"companyLeaveDate":(hrData.companyLeaveDateModel),"contractSignDate":(hrData.contractSignDateModel),"employeeStatus":hrData.employeeStatusModel,"enggContractInitiated":(hrData.enggContractInitiatedModel),"enggContractSigned":(hrData.enggContractSignedModel),"fellowshipPeriod":(hrData.fellowshipPeriodModel),"hiringCity":(hrData.hiringCityModel),"initiateTransfer":hrData.initiateTransferModel]
         Alamofire.request(urlString, method: .put, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 print("--response--",response)
