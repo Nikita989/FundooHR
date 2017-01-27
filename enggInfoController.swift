@@ -14,17 +14,14 @@ class enggInfoController: NSObject,enggInfoControllerProtocol {
     
     func fetchDataFromServices()
     {
-     
-     let enggInfoServicesObj = enggInfoServices()
+        let enggInfoServicesObj = enggInfoServices()
         enggInfoServicesObj.enggControllerProtocol = self
         enggInfoServicesObj.fetchDataFromDataBase()
-        
     }
     
     func sendDataToViewModel(value:enggInfoModel)
     {
         enggViewModelProtocol?.sendDataToView(values: value)
-        
     }
 
 }

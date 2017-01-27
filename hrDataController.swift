@@ -17,18 +17,15 @@ class hrDataController: NSObject,controllerProtocal {
     {
         hrDataServicesVar.hrDataContProtocal = self
         hrDataServicesVar.fetchHrDataFromDatabase()
-        
     }
     
     func sendDataToViewModel(values:hrDataModel)
     {
         hrViewModelProtocol?.sendDataToView(values:values)
-        
     }
 
     func sendUpdatedHrDataToServices(hrData:hrDataModel)
     {
         hrDataServicesVar.updateHrData(hrData: hrData)
-        
     }
 }

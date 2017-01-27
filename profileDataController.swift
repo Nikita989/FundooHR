@@ -12,21 +12,18 @@ class profileDataController: NSObject,profileControllerProtocol {
 
     let profileDataServicesVar = profileDataServices()
     var viewModelProctocolvar:profileViewModelProtocal?
+    
     func fetchProfileDataFromServices()
     {
-        
         profileDataServicesVar.controllerProtocol = self
         profileDataServicesVar.fetchProfileDataFromDataBase()
-        
     }
-    
     
     func sendProfileDatatoViewModel(value:profileDataModel)
     {
-        
         viewModelProctocolvar?.sendProfileDataToView(values: value)
-        
     }
+    
     func sendUpdatedProfileDataToController(profileData:profileDataModel)
     {
         profileDataServicesVar.updateProfileData(profilData: profileData)

@@ -12,24 +12,20 @@ class bankDataController: NSObject,bankControllerProtocol {
 
     var bankViewModelProtocal:bankViewModelProtocol?
     let  bankDataServicesObj = bankDataServices()
+    
     func fetchDataFromServices()
     {
-      
        bankDataServicesObj.bankControllerProtocol = self
         bankDataServicesObj.fetchDataFromDataBase()
-        
     }
     
     func sendDataToViewModel(value:bankDataModel)
     {
         bankViewModelProtocal?.sendDataToView(values: value)
-        
     }
     
     func sendUpdatedBankDataToServices(bankData:bankDataModel)
     {
-        
         bankDataServicesObj.updateBankData(bankData: bankData)
-        
     }
 }

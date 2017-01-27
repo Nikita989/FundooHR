@@ -17,13 +17,11 @@ class attendanceController: NSObject,attendanceControllerProtocol {
     {
         attendanceServicesObj.attendanceControllerProc = self
         attendanceServicesObj.fetchMonthlyAttendance(timeStamp: timeStamp)
-     
     }
     
     func sendMonthlyAttendanceToViewModel(keysArray:[String],valArray:[attendanceModel])
     {
         attendanceViewModelProc?.sendMonthlyAttendanceToView(keysArray: keysArray, valArray: valArray)
-        
     }
     
     func setUpdatedAttendanceToServices(attendanceValues:attendancePopUpModel)

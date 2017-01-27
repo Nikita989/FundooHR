@@ -1,7 +1,12 @@
 //
 //  loginViewController.swift
 //  Fundo
-//
+
+//  purpose:
+//  1. lets user enter emailId and Password
+//  2. validates emailId and Password
+//  3. Performs segue on Sussessfull Login
+
 //  Created by BridgeLabz Solution LLP on 05/01/17.
 //  Copyright © 2017 BridgeLabz Solution LLP. All rights reserved.
 //
@@ -9,145 +14,116 @@
 import UIKit
 import Alamofire
 import CoreData
-class loginViewController: UIViewController {
 
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var logo: UIImageView!
-    @IBOutlet weak var loginButton: UIButton!
-    @IBOutlet weak var loginView: UIView!
+var engineerId:String = "40016EI"
+
+class loginViewController: UIViewController,loginViewProtocol {
     
-    var fetchedToken:String?
-    var email:String?
-    var password:String?
-    var offsetCheckBOOL = false
+    // outlet of email textfield
+    @IBOutlet weak var emailField: UITextField!
+    // outlet of password textfield
+    @IBOutlet weak var passwordField: UITextField!
+    // outlet of logoImage
+    @IBOutlet weak var logo: UIImageView!
+    // outlet of login Button
+    @IBOutlet weak var loginButton: UIButton!
+    // outlet of login view
+    @IBOutlet weak var loginView: UIView!
+    // outlet of login activity indicator
+    @IBOutlet weak var loginActivityIndicator: UIActivityIndicatorView!
+    
+    var mEmail:String?                     // variable to hold email
+    var mPassword:String?                  // variable to hold password
+    var mOffsetCheckBOOL = false           // boolean variable for offset check
+    var mloginViewModelObj:loginViewModel? // variable of type login view model
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.layer.cornerRadius = 5
-        loginView.layer.cornerRadius = 10
+        loginActivityIndicator.isHidden = true
         loginView.layer.shadowColor = UIColor.black.cgColor
-        loginView.layer.shadowOffset = CGSize(width:2.0,height: 2.0)
-        loginView.layer.shadowOpacity = 0.4
-        loginView.layer.shadowRadius = 1.3
         logo.layer.shadowColor = UIColor.black.cgColor
-        logo.layer.shadowOffset = CGSize(width:0,height: 2.0)
-        logo.layer.shadowOpacity = 0.5
-        logo.layer.shadowRadius = 2.0
-        //adding observer for notification when keyboard appears
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        
-        //adding observer for notification when keyboard disappears
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        print("view.frame.origin.y",view.frame.origin.y)
+        // create object of login view model
+        mloginViewModelObj = loginViewModel()
+        mloginViewModelObj?.loginViewProtocolVar = self
         }
     
-
+ // action for login button and validating email id and password
     @IBAction func loginBtn(_ sender: UIButton) {
-        
-    email = emailField.text
-    password = passwordField.text
-    let urlString: String = "http://192.168.0.118:3000/login"
-    let params = ["emailId":  (email), "password" : (password)]
-    Alamofire.request(urlString, method: .post, parameters: params, encoding:JSONEncoding.default)
-        .responseJSON { response in
-      if let JSON = response.result.value{
-      let loginData = JSON as! NSDictionary
-      print("---Login Data----",loginData)
-      let status = loginData.value(forKey: "status") as! Int
-      print("status---",status)
-      if(status == 200){
-      self.fetchedToken = loginData.value(forKey: "token") as? String
-      self.saveInCoreData(saveToken: self.fetchedToken!)
-      self.performSegue(withIdentifier: "loginSegue", sender: nil)
-      }
-      else if(status == 401){
-        let alert = UIAlertController(title: "Alert", message: "user doesn't exist", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-      }
-      else if(status == 304){
-        let alert = UIAlertController(title: "Alert", message: "oops! Something went wrong", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-      }
+    loginActivityIndicator.isHidden = false
+    loginActivityIndicator.startAnimating()
+    mEmail = emailField.text
+    mPassword = passwordField.text
+        if mEmail == "" || mPassword == "" {
+            // display alert message if entered email and password is incorrect
+            let alert = UIAlertController(title: "Alert", message: "Enter Valid emailId and Password", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            loginActivityIndicator.isHidden = true
+            loginActivityIndicator.stopAnimating()
+            
         }
-                
-        }
-       
+        else
+        {
+      let value = self.validateUser(enteredEmail: mEmail!, enteredPassword: mPassword!)
+            if value {
+                // performin api call to validate email and password
+                mloginViewModelObj?.sendEmailPasswordToController(email: mEmail!, password: mPassword!)
+            }
+            else{
+                let alert = UIAlertController(title: "Alert", message: "Enter Valid emailId and Password", preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                loginActivityIndicator.isHidden = true
+                loginActivityIndicator.stopAnimating()
+            }
+    }
     }
     
-    func saveInCoreData(saveToken:String) -> Void {
+    
+    // function to validate email and password using REGEX
+    func validateUser(enteredEmail:String,enteredPassword:String) ->Bool
+    {
+      let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,20}"
+      let passwordRegex = "^([a-zA-Z0-9@*#]{8,15})$"
+      let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+      let passwordTest = NSPredicate(format:"SELF MATCHES %@", passwordRegex)
+        if emailTest.evaluate(with: enteredEmail) && passwordTest.evaluate(with: enteredPassword)
+        {
+         return true
+        }
+        else
+        {
+      return false
+        }
         
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let user = LoginToken(context: context)
-        user.token = saveToken
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
-        }
-   
-    //Keyboard popup and Hide Notifications
-    func keyboardWillShow(notification: NSNotification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            
-            let kbHeight = keyboardSize.size.height;
-            print("kbHeight",kbHeight)
-            print("email.frame.origin.y",emailField.frame.origin.y)
-            print("email.frame.size.height",emailField.frame.size.height)
-            print("self.view.frame.origin.y",self.view.frame.origin.y)
-            
-            print("password",passwordField.frame.origin.y)
-            print("password",passwordField.frame.size.height)
-            print("self.view.frame.origin.y",self.view.frame.origin.y)
-            
-            if (emailField.frame.origin.y+emailField.frame.size.height+self.view.frame.origin.y > kbHeight )
-            {
-                if(offsetCheckBOOL == false)
-                {
-                    offsetCheckBOOL = true
-                    print(self.view.frame.origin.y);
-                    self.view.frame.origin.y -= 80
-                    print(self.view.frame.origin.y);
-                }
-                else
-                {
-                    self.view.frame.origin.y += 80
-                    offsetCheckBOOL = false
-                    keyboardWillShow(notification: notification)
-                }
-            }
-            else if(passwordField.frame.origin.y+passwordField.frame.size.height+self.view.frame.origin.y < kbHeight )
-            {
-                //if(offsetCheckBOOL == true)
-                if(offsetCheckBOOL == false)
-                {
-                    //offsetCheckBOOL = false
-                    offsetCheckBOOL = true
-                    print(self.view.frame.origin.y);
-                    self.view.frame.origin.y -= 80
-                    print(self.view.frame.origin.y);
-                }
-                else
-                {
-                    self.view.frame.origin.y += 80
-                    //offsetCheckBOOL = true
-                    offsetCheckBOOL = false
-                    keyboardWillShow(notification: notification)
-                }
-            }
-        }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if(offsetCheckBOOL == true)
-            {
-                offsetCheckBOOL = false
-                self.view.frame.origin.y = 0
-            }
-        }
-    }
     
-}
+    // function to validate the login response status
+    func validateResponse()
+    {
+        if(mloginViewModelObj?.responseStatus == 200){
+            self.performSegue(withIdentifier: "loginSegue", sender: nil)
+        }
+        else if(mloginViewModelObj?.responseStatus == 401){
+            loginActivityIndicator.isHidden = true
+            loginActivityIndicator.stopAnimating()
+            let alert = UIAlertController(title: "Alert", message: "user doesn't exist", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+        else if(mloginViewModelObj?.responseStatus == 304){
+            loginActivityIndicator.isHidden = true
+            loginActivityIndicator.stopAnimating()
+            let alert = UIAlertController(title: "Alert", message: "oops! Something went wrong", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+
+        
+    }
+
+ }
 
 
     

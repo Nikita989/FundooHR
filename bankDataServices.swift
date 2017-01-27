@@ -14,67 +14,50 @@ class bankDataServices: NSObject {
     
     func fetchDataFromDataBase()
     {
-        
-        
-        Alamofire.request("http://192.168.0.118:3000/readEmployeeBankData?token=fghf&engineerId=427201EI").responseJSON
-            {
-                response in
-                print("value----",response.result.value)
-                
-                switch response.result
-                {
-                    
-                case .failure(let error):
-                    
-                    print("**************error****************")
-                    
+        let mUtilityObj = utility()
+        let mUrlString = mUtilityObj.fetchplistData()
+        Alamofire.request("\(mUrlString)/readEmployeeBankData?token=fghf&engineerId=\(engineerId)").responseJSON
+        {
+        response in
+        print("value----",response.result.value)
+        switch response.result
+        {
+        case .failure(let error):
+        print("**************error****************")
+        break
+        case .success(let json):
+        print("Success: \(response.response?.url)")
+        let jsonData = json as! NSDictionary
+        let val = jsonData["bankData"] as! NSDictionary
+        let accountNumber = val["accountNumber"] as! String
+        let bankName = val["bankName"] as! String
+        let ifscCode = val["ifscCode"] as! String
+        let pan = val["pan"] as! String
+        let paySalary = val["paySalary"] as! String
+        let reason = val["reason"] as! String
+        let bankModelObj = bankDataModel(accountNum: accountNumber,bankNAme: bankName,ifscCode: ifscCode,pan: pan,paySalary: paySalary,reasonVar: reason)
+                    self.bankControllerProtocol?.sendDataToViewModel(value: bankModelObj)
                     break
-                    
-                case .success(let json):
-                    
-                    print("Success: \(response.response?.url)")
-                    
-                    
-                    let jsonData = json as! NSDictionary
-                    
-                   
-                    let val = jsonData["bankData"] as! NSDictionary
-                    
-                                            let accountNumber = val["accountNumber"] as! String
-                                            let bankName = val["bankName"] as! String
-                                            let ifscCode = val["ifscCode"] as! String
-                                            let pan = val["pan"] as! String
-                                            let paySalary = val["paySalary"] as! String
-                                            let reason = val["reason"] as! String
-                    
-                    
-                                          let bankModelObj = bankDataModel(accountNum: accountNumber,bankNAme: bankName,ifscCode: ifscCode,pan: pan,paySalary: paySalary,reasonVar: reason)
-                                            
-                                    self.bankControllerProtocol?.sendDataToViewModel(value: bankModelObj)
-                    
-                    break
-                    }
-
                 }
+            }
         }
 
+    
     func updateBankData(bankData:bankDataModel)
     {
-        let urlString: String = "http://192.168.0.118:3000/updateEmployeeBankData"
-        let params = ["token":"1a285sdffd8do8fd","engineerId":"427201EI","accountNumber": (bankData.accNumber), "bankName" : (bankData.bankName),"ifscCode":(bankData.bankIfscCode),"pan":(bankData.bankPan),"paySalary":(bankData.BankPaySalary),"reason":(bankData.reason)]
+        let mUtilityObj = utility()
+        let mUrl = mUtilityObj.fetchplistData()
+        let urlString: String = "\(mUrl)/updateEmployeeBankData"
+        let params = ["token":"1a285sdffd8do8fd","engineerId":(engineerId),"accountNumber": (bankData.accNumber), "bankName" : (bankData.bankName),"ifscCode":(bankData.bankIfscCode),"pan":(bankData.bankPan),"paySalary":(bankData.BankPaySalary),"reason":(bankData.reason)]
         Alamofire.request(urlString, method: .put, parameters: params, encoding: JSONEncoding.default)
             .responseJSON { response in
                 print("--response--",response)
                 print("result----",response.result)
-                //completeFalloutData.value(forKey: "falloutNumber") as! Int
                 if let JSON = response.result.value{
                     let data = JSON as! NSDictionary
                     print("--- Data----",data)
-                    
                 }
-                
-        }
-        
+           }
     }
 
 
