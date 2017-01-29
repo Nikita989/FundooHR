@@ -23,17 +23,19 @@ class hrDataViewModel: NSObject,viewModelProtocol {
     // variable of type hr view protocol
     var hrViewObj:hrviewProtocal?
     
-    // creating object of hr data controller
-    let hrDataControllerVar = hrDataController()
-    
+    init(mHrViewProtocolObj:hrviewProtocal) {
+        
+        hrViewObj = mHrViewProtocolObj
+    }
     
     // making call to controller to fetch hr data
     func fetchHrDataFromController()
     {
-        hrDataControllerVar.hrViewModelProtocol = self
+        // creating object of hr data controller
+        let hrDataControllerVar = hrDataController(mHrViewModelProtocolObj: self)
         hrDataControllerVar.fetchHrDataFromServices()
     }
- 
+    
     // function to send fetched hr data to view
     func sendDataToView(values:hrDataModel)
     {
@@ -44,6 +46,7 @@ class hrDataViewModel: NSObject,viewModelProtocol {
     //  function to send updated data to hr controller
     func sendUpdatedHrDataToController(hrData:hrDataModel)
     {
+        let hrDataControllerVar = hrDataController(mHrViewModelProtocolObj: self)
         hrDataControllerVar.sendUpdatedHrDataToServices(hrData: hrData)
     }
     

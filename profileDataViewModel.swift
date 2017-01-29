@@ -20,14 +20,17 @@ class profileDataViewModel: NSObject,profileViewModelProtocal {
     // variable of type profile data model
     var profileValues:profileDataModel?
     
-    // creating object of profile data controller
-    let profileDataControllervar = profileDataController()
-
+    init(mProfileViewProtocolObj:profileViewProtocal) {
+        
+        profileViewProc = mProfileViewProtocolObj
+    }
+    
     
     // making call to controller to fetch profile data
     func fetchProfileDataFromController()
     {
-        profileDataControllervar.viewModelProctocolvar = self
+        // creating object of profile data controller
+        let profileDataControllervar = profileDataController(pProfileViewModelObj: self)
         profileDataControllervar.fetchProfileDataFromServices()
     }
     
@@ -43,7 +46,8 @@ class profileDataViewModel: NSObject,profileViewModelProtocal {
     //  function to send updated data to profile controller
     func sendUpdatedProfileDataToController(profileData:profileDataModel)
     {
+        let profileDataControllervar = profileDataController(pProfileViewModelObj: self)
         profileDataControllervar.sendUpdatedProfileDataToController(profileData: profileData)
     }
-
+    
 }

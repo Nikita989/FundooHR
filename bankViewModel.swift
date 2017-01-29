@@ -13,22 +13,27 @@
 import UIKit
 
 class bankViewModel: NSObject,bankViewModelProtocol{
-
+    
     // variable of type bank data model
     var bankvalues:bankDataModel?
     
-    // creating object of bank data controller
-    let bankControllerObj = bankDataController()
- 
+    
     // variable of type bank view protocol
     var viewControllerProc:bankviewProtocol?
-
+    
+    init(mBankViewProtocolObj:bankviewProtocol) {
+        
+        viewControllerProc = mBankViewProtocolObj
+    }
+    
     
     // making call to controller to fetch bank data
     func fetchDataFromController()
     {
-        bankControllerObj.bankViewModelProtocal = self
+        // creating object of bank data controller
+        let bankControllerObj = bankDataController(mBankControllerProtocolObj: self)
         bankControllerObj.fetchDataFromServices()
+        
     }
     
     // function to send fetched bank data to view
@@ -41,7 +46,8 @@ class bankViewModel: NSObject,bankViewModelProtocol{
     //  function to send updated data to bank controller
     func sendUpdatedBankDataToController(bankData:bankDataModel)
     {
+        let bankControllerObj = bankDataController(mBankControllerProtocolObj: self)
         bankControllerObj.sendUpdatedBankDataToServices(bankData: bankData)
     }
-
+    
 }

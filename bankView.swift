@@ -13,12 +13,12 @@ import UIKit
 
 class bankView: UIView {
     //textfields of bank view
-    @IBOutlet var tf1:UITextField?
-    @IBOutlet var tf2:UITextField?
-    @IBOutlet var tf3:UITextField?
-    @IBOutlet var tf4:UITextField?
-    @IBOutlet var tf5:UITextField?
-    @IBOutlet var tf6:UITextField?
+    @IBOutlet var mBankTextField1:UITextField?
+    @IBOutlet var mBankTextField2:UITextField?
+    @IBOutlet var mBankTextField3:UITextField?
+    @IBOutlet var mBankTextField4:UITextField?
+    @IBOutlet var mBankTextField5:UITextField?
+    @IBOutlet var mBankTextField6:UITextField?
     //activity indicator for bank view
     @IBOutlet var bankActivityIndicator:UIActivityIndicatorView?
     // Buttons

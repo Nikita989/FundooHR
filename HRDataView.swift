@@ -13,26 +13,26 @@ import UIKit
 
 class HRDataView: UIView {
     // textfields of hrDataView
-    @IBOutlet var tf1:UITextField?
-    @IBOutlet var tf2:UITextField?
-    @IBOutlet var tf3:UITextField?
-    @IBOutlet var tf4:UITextField?
-    @IBOutlet var tf5:UITextField?
-    @IBOutlet var tf6:UITextField?
-    @IBOutlet var tf7:UITextField?
-    @IBOutlet var tf8:UITextField?
-    @IBOutlet var tf9:UITextField?
-    @IBOutlet var tf10:UITextField?
-    @IBOutlet var tf11:UITextField?
-    @IBOutlet var tf12:UITextField?
-    @IBOutlet var tf13:UITextField?
-    @IBOutlet var tf14:UITextField?
-    @IBOutlet var tf15:UITextField?
-    @IBOutlet var tf16:UITextField?
-    @IBOutlet var tf17:UITextField?
-    @IBOutlet var tf18:UITextField?
-    @IBOutlet var tf19:UITextField?
-    @IBOutlet var tf20:UITextField?
+    @IBOutlet var mHrTextField1:UITextField?
+    @IBOutlet var mHrTextField2:UITextField?
+    @IBOutlet var mHrTextField3:UITextField?
+    @IBOutlet var mHrTextField4:UITextField?
+    @IBOutlet var mHrTextField5:UITextField?
+    @IBOutlet var mHrTextField6:UITextField?
+    @IBOutlet var mHrTextField7:UITextField?
+    @IBOutlet var mHrTextField8:UITextField?
+    @IBOutlet var mHrTextField9:UITextField?
+    @IBOutlet var mHrTextField10:UITextField?
+    @IBOutlet var mHrTextField11:UITextField?
+    @IBOutlet var mHrTextField12:UITextField?
+    @IBOutlet var mHrTextField13:UITextField?
+    @IBOutlet var mHrTextField14:UITextField?
+    @IBOutlet var mHrTextField15:UITextField?
+    @IBOutlet var mHrTextField16:UITextField?
+    @IBOutlet var mHrTextField17:UITextField?
+    @IBOutlet var mHrTextField18:UITextField?
+    @IBOutlet var mHrTextField19:UITextField?
+    @IBOutlet var mHrTextField20:UITextField?
     @IBOutlet var companyTextField:UITextField?
     @IBOutlet var employeeStatusTextField:UITextField?
     // activity indicator for hrData view

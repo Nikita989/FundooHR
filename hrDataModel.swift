@@ -1,7 +1,10 @@
 //
 //  hrDataModel.swift
 //  Fundo
-//
+
+//  purpose:
+//  1. model class for hr data
+
 //  Created by BridgeLabz Solution LLP on 02/01/17.
 //  Copyright © 2017 BridgeLabz Solution LLP. All rights reserved.
 //
@@ -10,6 +13,7 @@ import Foundation
 
 class hrDataModel: NSObject {
     
+    // variable of type string to store hr data values
     var startDateModel:String?
     var contractInitiatedModel:String?
     var contractSignedModel:String?
@@ -24,7 +28,7 @@ class hrDataModel: NSObject {
     var hiringCityModel:String?
     var initiateTransferModel:String?
     
-    
+    // constructor of hrDataModel
     init(startDate:String,contractInitiated:String,contractSigned:String,company:String,companyJoinDate:String,companyLeaveDate:String,contractSignDate:String,employeeStatus:String,enggContractInitiated:String,enggContractSigned:String,fellowshipPeriod:String,hiringCity:String,initiateTransfer:String) {
         
         self.startDateModel = startDate
@@ -42,5 +46,5 @@ class hrDataModel: NSObject {
         self.initiateTransferModel = initiateTransfer
         
     }
-   
-   }
+    
+}

@@ -17,16 +17,16 @@ class profileView: UIView {
     @IBOutlet var profilCancelBtn:UIButton?
     @IBOutlet var profileEditBtn:UIButton?
     // Textfields of profile view
-    @IBOutlet var tf1:UITextField?
-    @IBOutlet var tf2:UITextField?
-    @IBOutlet var tf3:UITextField?
-    @IBOutlet var tf4:UITextField?
-    @IBOutlet var tf5:UITextField?
-    @IBOutlet var tf6:UITextField?
-    @IBOutlet var tf7:UITextField?
-    @IBOutlet var tf8:UITextField?
+    @IBOutlet var mProfileTextField1:UITextField?
+    @IBOutlet var mProfileTextField2:UITextField?
+    @IBOutlet var mProfileTextField3:UITextField?
+    @IBOutlet var mProfileTextField4:UITextField?
+    @IBOutlet var mProfileTextField5:UITextField?
+    @IBOutlet var mProfileTextField6:UITextField?
+    @IBOutlet var mProfileTextField7:UITextField?
+    @IBOutlet var mProfileTextField8:UITextField?
     // Textview
-    @IBOutlet var tf9:UITextView?
+    @IBOutlet var mProfileTextView9:UITextView?
     //Activity indivator for profile view
     @IBOutlet var profileActivityIndicator:UIActivityIndicatorView?
   }

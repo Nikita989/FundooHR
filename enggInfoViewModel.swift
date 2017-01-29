@@ -13,26 +13,34 @@
 import UIKit
 
 class enggInfoViewModel: NSObject,enggInfoViewModelProtocol {
-
+    
     // variable of type enggInfo View Protocol
-    var enggViewProc:enggInfoViewProtocol?
+    var mEnggViewProc:enggInfoViewProtocol?
     
     // variable of type enggInfo model
-    var enggInfoValues:enggInfoModel?
+    var mEnggInfoValues:enggInfoModel?
+    
+    
+    init(enggInfoViewProtocolObj:enggInfoViewProtocol) {
+        
+        mEnggViewProc = enggInfoViewProtocolObj
+    }
+    
     
     // making call to controller to fetch enggInfo
     func fetchDataFromController()
     {
-        let enggInfoControllerObj = enggInfoController()
-        enggInfoControllerObj.enggViewModelProtocol = self
-        enggInfoControllerObj.fetchDataFromServices()
+        let mEnggInfoControllerObj = enggInfoController(pEnggInfoViewModelProtocolObj: self)
+        mEnggInfoControllerObj.fetchDataFromServices()
+        
     }
+    
     
     // function to send fetched engineer info to view
     func sendDataToView(values:enggInfoModel)
     {
-        enggInfoValues = values
-        enggViewProc?.setEnggInfoData()
+        mEnggInfoValues = values
+        mEnggViewProc?.setEnggInfoData()
     }
     
 }

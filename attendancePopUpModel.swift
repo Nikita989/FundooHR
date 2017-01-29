@@ -1,7 +1,10 @@
 //
 //  attendancePopUpModel.swift
 //  Fundo
-//
+
+//  purpose:
+//  1. model class for attendance popup view
+
 //  Created by BridgeLabz Solution LLP on 13/01/17.
 //  Copyright © 2017 BridgeLabz Solution LLP. All rights reserved.
 //
@@ -10,6 +13,7 @@ import UIKit
 
 class attendancePopUpModel: NSObject {
     
+    // variable of type string to store attendance popup values
     var timeStamp:String?
     var engineerId:String?
     var attendanceStatus:String?
@@ -18,6 +22,7 @@ class attendancePopUpModel: NSObject {
     var punchOut:String?
     var reason:String?
     
+    // constructor of attendance popup Model
     init(timeStampVar:String,enggId:String,attendanceStatusVar:String,markedStatusVar:String,punchInVar:String,punchOutVar:String,reasonVar:String) {
         
         self.timeStamp = timeStampVar
@@ -28,5 +33,5 @@ class attendancePopUpModel: NSObject {
         self.punchOut = punchOutVar
         self.reason = reasonVar
     }
-
+    
 }

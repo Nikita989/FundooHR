@@ -13,12 +13,12 @@ import UIKit
 
 class trackingView: UIView {
     // textfields of tracking view
-    @IBOutlet var tf1:UITextField?
-    @IBOutlet var tf2:UITextField?
-    @IBOutlet var tf3:UITextField?
-    @IBOutlet var tf4:UITextField?
-    @IBOutlet var tf5:UITextField?
-    @IBOutlet var tf6:UITextField?
+    @IBOutlet var mTrackingTextField1:UITextField?
+    @IBOutlet var mTrackingTextField2:UITextField?
+    @IBOutlet var mTrackingTextField3:UITextField?
+    @IBOutlet var mTrackingTextField4:UITextField?
+    @IBOutlet var mTrackingTextField5:UITextField?
+    @IBOutlet var mTrackingTextField6:UITextField?
     // Buttons
     @IBOutlet var trackingsaveBtn:UIButton?
     @IBOutlet var trackingEditBtn:UIButton?

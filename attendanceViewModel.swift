@@ -14,31 +14,36 @@ import UIKit
 
 class attendanceViewModel: NSObject,attendanceViewModelProtocol {
     
-    // creating object of attendance Controller
-    let attendanceControllerObj = attendanceController()
-    
     // variable of type attendance View Protocol
-    var attendanceViewProc:attendanceViewProtocol?
+    var mAttendanceViewProc:attendanceViewProtocol?
     
+    init(attendanceViewProtocolObj:attendanceViewProtocol) {
+        
+        mAttendanceViewProc = attendanceViewProtocolObj
+    }
     
     // making call to controller to fetch monthly attendance
     func fetchMonthlyAttendanceFromController(timeStamp:Double)
     {
-        attendanceControllerObj.attendanceViewModelProc = self
-        attendanceControllerObj.fetchMonthlyAttendanceFromServices(timeStamp: timeStamp)
+        // creating object of attendance Controller
+        let mAttendanceControllerObj = attendanceController(mAttendanceViewModelProtocolObj: self)
+        mAttendanceControllerObj.fetchMonthlyAttendanceFromServices(timeStamp: timeStamp)
     }
     
     
     // function to send fetched Monthly Attendance to view
     func sendMonthlyAttendanceToView(keysArray:[String],valArray:[attendanceModel])
     {
-        attendanceViewProc?.calendarReload(keysArr: keysArray, valArray: valArray)
+        mAttendanceViewProc?.calendarReload(keysArr: keysArray, valArray: valArray)
     }
+    
     
     //  function to send updated attendance to attendance controller
     func setUpdatedAttendanceToController(attendanceData:attendancePopUpModel)
     {
+        // creating object of attendance Controller
+        let attendanceControllerObj = attendanceController(mAttendanceViewModelProtocolObj: self)
         attendanceControllerObj.setUpdatedAttendanceToServices(attendanceValues: attendanceData)
     }
-
+    
 }

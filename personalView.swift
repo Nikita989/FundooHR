@@ -13,18 +13,18 @@ import UIKit
 
 class personalView: UIView {
    // textfields of personal view
-    @IBOutlet var tf1:UITextField?
-    @IBOutlet var tf2:UITextField?
-    @IBOutlet var tf3:UITextField?
-    @IBOutlet var tf4:UITextField?
-    @IBOutlet var tf5:UITextField?
-    @IBOutlet var tf6:UITextField?
-    @IBOutlet var tf7:UITextField?
-    @IBOutlet var tf8:UITextField?
+    @IBOutlet var mPersonalTextField1:UITextField?
+    @IBOutlet var mPersonalTextField2:UITextField?
+    @IBOutlet var mPersonalTextField3:UITextField?
+    @IBOutlet var mPersonalTextField4:UITextField?
+    @IBOutlet var mPersonalTextField5:UITextField?
+    @IBOutlet var mPersonalTextField6:UITextField?
+    @IBOutlet var mPersonalTextField7:UITextField?
+    @IBOutlet var mPersonalTextField8:UITextField?
     @IBOutlet var nameTextField:UITextField?
     // text views
-    @IBOutlet var tf9:UITextView?
-    @IBOutlet var tf10:UITextView?
+    @IBOutlet var mPersonalTextView9:UITextView?
+    @IBOutlet var mPersonalTextView10:UITextView?
     // activity indicator for personal view
     @IBOutlet var personalActivityIndicator:UIActivityIndicatorView?
     // buttons

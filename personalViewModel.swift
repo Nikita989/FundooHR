@@ -20,17 +20,21 @@ class personalViewModel: NSObject,personalViewModelProtocal {
     // variable of type personal view protocol
     var personalProtocal:personalviewProtocal?
     
-    // creating object of personal data controller
-    let personalDataControllerVar = personalDataController()
+    
+    init(mPersonalViewProtocolObj:personalviewProtocal) {
+        
+        personalProtocal = mPersonalViewProtocolObj
+    }
     
     
     // making call to controller to fetch personal data
     func fetchPersonalDataFromController()
     {
-        personalDataControllerVar.viewModelProtocalVar = self
+        // creating object of personal data controller
+        let personalDataControllerVar = personalDataController(mPersonalProtocolObj: self)
         personalDataControllerVar.fetchPersonalDataFromServices()
     }
-
+    
     
     // function to send fetched personal data to view
     func sendPersonalDataToView(value:personalDataModel)
@@ -43,6 +47,7 @@ class personalViewModel: NSObject,personalViewModelProtocal {
     //  function to send updated data to personal controller
     func sendUpdatedPersonalDataToController(personalData:personalDataModel)
     {
+        let personalDataControllerVar = personalDataController(mPersonalProtocolObj: self)
         personalDataControllerVar.sendUpdatedPersonalDataToServices(personalData: personalData)
     }
 }

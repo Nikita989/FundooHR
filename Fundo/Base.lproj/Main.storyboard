@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="Cmu-g5-LRj">
             <objects>
-                <viewController storyboardIdentifier="loginView" id="0S1-er-mb4" customClass="loginViewController" customModule="Fundo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginView" id="0S1-er-mb4" customClass="LoginViewController" customModule="Fundo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Knf-e6-nqm"/>
                         <viewControllerLayoutGuide type="bottom" id="5dW-9U-eZP"/>
@@ -151,12 +151,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailField" destination="AfU-te-b0r" id="7ta-TD-kHy"/>
-                        <outlet property="loginActivityIndicator" destination="mIh-hO-tHX" id="i5T-hK-5bS"/>
-                        <outlet property="loginButton" destination="xaK-e2-ggj" id="3eE-67-ian"/>
-                        <outlet property="loginView" destination="H4X-ry-2cg" id="4lo-N5-o8z"/>
-                        <outlet property="logo" destination="Ens-3I-HhX" id="U3O-2g-8eQ"/>
-                        <outlet property="passwordField" destination="CBy-mb-gnt" id="dbi-uT-jig"/>
+                        <outlet property="mEmailField" destination="AfU-te-b0r" id="Fsc-zA-yO4"/>
+                        <outlet property="mLoginActivityIndicator" destination="mIh-hO-tHX" id="MGy-4q-XkD"/>
+                        <outlet property="mLoginButton" destination="xaK-e2-ggj" id="tu3-He-lFs"/>
+                        <outlet property="mLoginView" destination="H4X-ry-2cg" id="NfG-sZ-4n3"/>
+                        <outlet property="mLogo" destination="Ens-3I-HhX" id="Msf-Ii-lHi"/>
+                        <outlet property="mPasswordField" destination="CBy-mb-gnt" id="1iK-kq-KlH"/>
                         <segue destination="ifR-sG-jCL" kind="show" identifier="loginSegue" id="pMo-WJ-1eh"/>
                     </connections>
                 </viewController>
@@ -236,7 +236,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sex-U2-h8q" id="uuW-Hh-Ber">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y51-mj-m8f">
@@ -347,7 +347,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dashBoardCell" id="hP5-wW-O5I" customClass="dashboardCollectionViewCell" customModule="Fundo" customModuleProvider="target">
-                                        <rect key="frame" x="31.5" y="0.0" width="331" height="220"/>
+                                        <rect key="frame" x="32" y="0.0" width="331" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="331" height="220"/>
@@ -406,7 +406,7 @@
                                         <rect key="frame" x="0.0" y="28" width="263" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yMz-v8-him" id="ZXg-FA-nN7">
-                                            <rect key="frame" x="0.0" y="0.0" width="263" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="263" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -423,8 +423,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="164-60-NOy" userLabel="ContainerVIew">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="1500"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="images" translatesAutoresizingMaskIntoConstraints="NO" id="mub-NG-6xe">
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="gyu-FP-9Be">
+                                                <rect key="frame" x="169" y="158" width="37" height="37"/>
+                                                <color key="color" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </activityIndicatorView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mub-NG-6xe">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="350"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="350" id="0BV-dm-kfY"/>
                                                 </constraints>
@@ -432,7 +437,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhC-wT-aNu">
                                                 <rect key="frame" x="20" y="300" width="0.0" height="37"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="textColor" red="0.23137254900000001" green="0.32549019610000002" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G8t-Fj-lBy">
@@ -562,7 +567,7 @@
                                                         </connections>
                                                     </button>
                                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="eDS-J3-zMB">
-                                                        <rect key="frame" x="169" y="181.5" width="37" height="37"/>
+                                                        <rect key="frame" x="169" y="182" width="37" height="37"/>
                                                         <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </activityIndicatorView>
                                                 </subviews>
@@ -623,12 +628,12 @@
                                                     <outlet property="bankCancelBtn" destination="ZFL-fa-LTe" id="EJG-aL-cFc"/>
                                                     <outlet property="bankEditBtn" destination="UGW-8L-mLc" id="Bfq-G4-eLB"/>
                                                     <outlet property="bankSaveBtn" destination="17u-Bv-XLw" id="J3V-1v-ZmX"/>
-                                                    <outlet property="tf1" destination="j1v-aS-QHZ" id="NvI-az-XZv"/>
-                                                    <outlet property="tf2" destination="GkN-K0-tbV" id="C7F-cD-U9i"/>
-                                                    <outlet property="tf3" destination="5gp-SA-sqb" id="ljE-9w-Ejl"/>
-                                                    <outlet property="tf4" destination="fZx-4D-vqg" id="5pV-0T-Mkh"/>
-                                                    <outlet property="tf5" destination="fpB-RS-ame" id="My9-pa-ddA"/>
-                                                    <outlet property="tf6" destination="Q04-sa-Ujb" id="lPY-ha-hd9"/>
+                                                    <outlet property="mBankTextField1" destination="j1v-aS-QHZ" id="ZQY-G7-Xe5"/>
+                                                    <outlet property="mBankTextField2" destination="GkN-K0-tbV" id="VsA-wd-y6Q"/>
+                                                    <outlet property="mBankTextField3" destination="5gp-SA-sqb" id="QmD-IK-rGD"/>
+                                                    <outlet property="mBankTextField4" destination="fZx-4D-vqg" id="vOl-cD-ieK"/>
+                                                    <outlet property="mBankTextField5" destination="fpB-RS-ame" id="9QL-jE-c44"/>
+                                                    <outlet property="mBankTextField6" destination="Q04-sa-Ujb" id="MJ7-D6-kgf"/>
                                                 </connections>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRQ-6E-8sI" customClass="profileView" customModule="Fundo" customModuleProvider="target">
@@ -862,19 +867,19 @@
                                                     <constraint firstAttribute="trailing" secondItem="D3L-Hf-0p9" secondAttribute="trailing" constant="-4" id="zrN-ig-jY8"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="mProfileTextField1" destination="aaS-Ea-dMT" id="zWV-lU-OZc"/>
+                                                    <outlet property="mProfileTextField2" destination="l1n-pF-Cna" id="h0K-rt-svz"/>
+                                                    <outlet property="mProfileTextField3" destination="ikD-v5-qTH" id="lKn-ji-fxx"/>
+                                                    <outlet property="mProfileTextField4" destination="ddf-kQ-eyL" id="V1e-8Q-XeA"/>
+                                                    <outlet property="mProfileTextField5" destination="vde-dd-epL" id="LbA-uP-HQr"/>
+                                                    <outlet property="mProfileTextField6" destination="D3L-Hf-0p9" id="jXq-5Z-oKl"/>
+                                                    <outlet property="mProfileTextField7" destination="dja-ju-adC" id="NVQ-o4-8ut"/>
+                                                    <outlet property="mProfileTextField8" destination="rLs-9y-2Yw" id="Rfj-01-b2a"/>
+                                                    <outlet property="mProfileTextView9" destination="GLc-5S-xEm" id="Ogg-ww-RMb"/>
                                                     <outlet property="profilCancelBtn" destination="QaC-7q-Ckc" id="ZU7-T9-3hh"/>
                                                     <outlet property="profileActivityIndicator" destination="fPm-22-B33" id="rAb-vv-HxF"/>
                                                     <outlet property="profileEditBtn" destination="tNF-6b-9Dp" id="Qed-cM-JJP"/>
                                                     <outlet property="profileSaveBtn" destination="xCv-t0-G76" id="D8m-OE-EAP"/>
-                                                    <outlet property="tf1" destination="aaS-Ea-dMT" id="fGf-6x-k27"/>
-                                                    <outlet property="tf2" destination="l1n-pF-Cna" id="yHl-43-M95"/>
-                                                    <outlet property="tf3" destination="ikD-v5-qTH" id="Ift-Mj-22C"/>
-                                                    <outlet property="tf4" destination="ddf-kQ-eyL" id="u1a-Aq-uv4"/>
-                                                    <outlet property="tf5" destination="vde-dd-epL" id="1ER-oF-HZe"/>
-                                                    <outlet property="tf6" destination="D3L-Hf-0p9" id="C3s-j4-0GD"/>
-                                                    <outlet property="tf7" destination="dja-ju-adC" id="5gh-rx-Lgg"/>
-                                                    <outlet property="tf8" destination="rLs-9y-2Yw" id="haS-dL-Itj"/>
-                                                    <outlet property="tf9" destination="GLc-5S-xEm" id="tTH-8I-gL5"/>
                                                 </connections>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JLV-9x-CVO" customClass="personalView" customModule="Fundo" customModuleProvider="target">
@@ -1066,7 +1071,7 @@
                                                         </connections>
                                                     </button>
                                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="aNU-VE-IvM">
-                                                        <rect key="frame" x="169.5" y="155" width="37" height="37"/>
+                                                        <rect key="frame" x="169" y="155" width="37" height="37"/>
                                                         <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </activityIndicatorView>
                                                 </subviews>
@@ -1149,21 +1154,21 @@
                                                     <constraint firstItem="LmM-x0-t8i" firstAttribute="leading" secondItem="JLV-9x-CVO" secondAttribute="leading" constant="20" id="zxh-jn-Kty"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="mPersonalTextField1" destination="RDu-uW-iIz" id="DLn-9e-Q9a"/>
+                                                    <outlet property="mPersonalTextField2" destination="V4N-Em-a4Q" id="7pc-3w-Sbt"/>
+                                                    <outlet property="mPersonalTextField3" destination="rSa-Wb-t6D" id="lxY-Ac-I5d"/>
+                                                    <outlet property="mPersonalTextField4" destination="kPi-fZ-q72" id="jik-ci-MNd"/>
+                                                    <outlet property="mPersonalTextField5" destination="9NO-WS-BqD" id="bQM-wd-RHG"/>
+                                                    <outlet property="mPersonalTextField6" destination="JU4-tK-J3T" id="CP0-hc-kk3"/>
+                                                    <outlet property="mPersonalTextField7" destination="eMz-v2-5yz" id="Hzx-dw-1vF"/>
+                                                    <outlet property="mPersonalTextField8" destination="Wbs-VO-ZDu" id="a6A-Jj-nIQ"/>
+                                                    <outlet property="mPersonalTextView10" destination="dgg-6P-GmE" id="jhg-0z-UyM"/>
+                                                    <outlet property="mPersonalTextView9" destination="85I-nV-GHZ" id="IeJ-GV-Z4T"/>
                                                     <outlet property="nameTextField" destination="w6y-c1-zs4" id="yjc-tS-abl"/>
                                                     <outlet property="personalActivityIndicator" destination="aNU-VE-IvM" id="mOU-xD-vMY"/>
                                                     <outlet property="personalCancelBtn" destination="l2r-WX-k4C" id="zjz-Lo-fAH"/>
                                                     <outlet property="personalEditBtn" destination="I2q-Uq-Cpv" id="k6J-iz-xvh"/>
                                                     <outlet property="personalSaveBtn" destination="KGp-Yj-UIO" id="2b3-8m-e30"/>
-                                                    <outlet property="tf1" destination="RDu-uW-iIz" id="Akh-7U-vKY"/>
-                                                    <outlet property="tf10" destination="dgg-6P-GmE" id="Jpx-GK-Slq"/>
-                                                    <outlet property="tf2" destination="V4N-Em-a4Q" id="Mts-1t-XOf"/>
-                                                    <outlet property="tf3" destination="rSa-Wb-t6D" id="aWI-Hq-qnn"/>
-                                                    <outlet property="tf4" destination="kPi-fZ-q72" id="CtT-26-B64"/>
-                                                    <outlet property="tf5" destination="9NO-WS-BqD" id="mPs-K6-nr3"/>
-                                                    <outlet property="tf6" destination="JU4-tK-J3T" id="pG7-kl-ctr"/>
-                                                    <outlet property="tf7" destination="eMz-v2-5yz" id="IgU-Tk-xHL"/>
-                                                    <outlet property="tf8" destination="Wbs-VO-ZDu" id="Mih-ch-Egm"/>
-                                                    <outlet property="tf9" destination="85I-nV-GHZ" id="h8b-xG-NE0"/>
                                                 </connections>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SaN-vB-A8d" customClass="engineerInfoView" customModule="Fundo" customModuleProvider="target">
@@ -1388,15 +1393,15 @@
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="engineerInfoActivityIndicator" destination="WmX-nH-J5U" id="i9m-rl-dqW"/>
-                                                    <outlet property="tf1" destination="H4K-Rv-Mam" id="gAg-cY-fIC"/>
-                                                    <outlet property="tf2" destination="KCo-9n-0ep" id="CX3-E7-7F8"/>
-                                                    <outlet property="tf3" destination="CMR-Wc-9Kx" id="ha2-KC-eW8"/>
-                                                    <outlet property="tf4" destination="Jhj-RQ-QzA" id="OVS-aU-hyV"/>
-                                                    <outlet property="tf5" destination="Ciu-Ab-GxR" id="q2T-t5-Ur2"/>
-                                                    <outlet property="tf6" destination="u4N-dO-EfK" id="8cU-m9-N8G"/>
-                                                    <outlet property="tf7" destination="GEf-5S-yGc" id="JSt-J2-iV2"/>
-                                                    <outlet property="tf8" destination="TzX-UF-MdL" id="p6J-Xa-lIN"/>
-                                                    <outlet property="tf9" destination="bcB-xO-Wkg" id="sym-Ic-hxZ"/>
+                                                    <outlet property="mEnggInfoLabel1" destination="H4K-Rv-Mam" id="tOs-D1-fXk"/>
+                                                    <outlet property="mEnggInfoLabel2" destination="KCo-9n-0ep" id="05R-P5-tiu"/>
+                                                    <outlet property="mEnggInfoLabel3" destination="CMR-Wc-9Kx" id="2bP-KJ-njy"/>
+                                                    <outlet property="mEnggInfoLabel4" destination="Jhj-RQ-QzA" id="73H-sp-lNf"/>
+                                                    <outlet property="mEnggInfoLabel5" destination="Ciu-Ab-GxR" id="4eq-gy-KO8"/>
+                                                    <outlet property="mEnggInfoLabel6" destination="u4N-dO-EfK" id="baQ-CY-buz"/>
+                                                    <outlet property="mEnggInfoLabel7" destination="GEf-5S-yGc" id="iad-mu-MOW"/>
+                                                    <outlet property="mEnggInfoLabel8" destination="TzX-UF-MdL" id="wKx-Zn-rTJ"/>
+                                                    <outlet property="mEnggInfoLabel9" destination="bcB-xO-Wkg" id="hM0-er-pIK"/>
                                                 </connections>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vaq-cX-Y4g" customClass="HRDataView" customModule="Fundo" customModuleProvider="target">
@@ -1706,7 +1711,7 @@
                                                         </connections>
                                                     </button>
                                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2wd-Xs-3Vm">
-                                                        <rect key="frame" x="169" y="381.5" width="37" height="37"/>
+                                                        <rect key="frame" x="169" y="382" width="37" height="37"/>
                                                         <color key="color" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </activityIndicatorView>
                                                 </subviews>
@@ -1863,26 +1868,26 @@
                                                     <outlet property="companyTextField" destination="djE-Zk-TfK" id="niU-fv-81j"/>
                                                     <outlet property="employeeStatusTextField" destination="qII-tu-P5l" id="rs8-KT-pUr"/>
                                                     <outlet property="hrActivityIndicator" destination="2wd-Xs-3Vm" id="SIh-K2-LQc"/>
-                                                    <outlet property="tf1" destination="ePP-LS-b60" id="ZTE-uf-Gya"/>
-                                                    <outlet property="tf10" destination="ziI-4c-W0x" id="yYB-87-1rj"/>
-                                                    <outlet property="tf11" destination="1zz-ni-7WY" id="E7r-YL-85M"/>
-                                                    <outlet property="tf12" destination="huG-LY-fF8" id="ayT-la-rP4"/>
-                                                    <outlet property="tf13" destination="T25-sg-os4" id="jk0-H8-2t3"/>
-                                                    <outlet property="tf14" destination="Z75-OY-5Gq" id="0MS-FW-JQO"/>
-                                                    <outlet property="tf15" destination="6RT-FR-z4A" id="pDn-zm-FJg"/>
-                                                    <outlet property="tf16" destination="fOt-m5-Rhi" id="eKL-3y-eLb"/>
-                                                    <outlet property="tf17" destination="mOo-tD-gUF" id="lx4-CR-eLe"/>
-                                                    <outlet property="tf18" destination="XAA-Oq-mep" id="jGG-7d-wLg"/>
-                                                    <outlet property="tf19" destination="39t-hq-AWj" id="Ddf-dd-XEO"/>
-                                                    <outlet property="tf2" destination="LGd-hr-KV2" id="uDi-dI-DxA"/>
-                                                    <outlet property="tf20" destination="Clm-fl-5iQ" id="ENQ-tw-fWR"/>
-                                                    <outlet property="tf3" destination="bb0-JQ-zzS" id="ZKW-mg-2RP"/>
-                                                    <outlet property="tf4" destination="zd5-hp-MTY" id="wse-1I-Rjc"/>
-                                                    <outlet property="tf5" destination="xYx-Wx-Ub1" id="0ub-Tt-lH5"/>
-                                                    <outlet property="tf6" destination="oNg-75-qd5" id="tiw-cN-ux9"/>
-                                                    <outlet property="tf7" destination="3CF-Q0-ydf" id="jdl-om-sDJ"/>
-                                                    <outlet property="tf8" destination="YeC-Gz-Z8P" id="8Fo-yG-ITG"/>
-                                                    <outlet property="tf9" destination="o1j-tS-kK9" id="j4M-LW-Wka"/>
+                                                    <outlet property="mHrTextField1" destination="ePP-LS-b60" id="rUS-jP-s4z"/>
+                                                    <outlet property="mHrTextField10" destination="ziI-4c-W0x" id="aKp-kj-tHM"/>
+                                                    <outlet property="mHrTextField11" destination="1zz-ni-7WY" id="5Oj-lY-ehn"/>
+                                                    <outlet property="mHrTextField12" destination="huG-LY-fF8" id="lc5-Kx-59F"/>
+                                                    <outlet property="mHrTextField13" destination="T25-sg-os4" id="HxW-P2-w2V"/>
+                                                    <outlet property="mHrTextField14" destination="Z75-OY-5Gq" id="qaA-va-lNm"/>
+                                                    <outlet property="mHrTextField15" destination="6RT-FR-z4A" id="8Oy-QF-cCZ"/>
+                                                    <outlet property="mHrTextField16" destination="fOt-m5-Rhi" id="iMb-F1-C6v"/>
+                                                    <outlet property="mHrTextField17" destination="mOo-tD-gUF" id="KiP-0c-f1R"/>
+                                                    <outlet property="mHrTextField18" destination="XAA-Oq-mep" id="2yH-Hi-ut2"/>
+                                                    <outlet property="mHrTextField19" destination="39t-hq-AWj" id="TDU-si-3KD"/>
+                                                    <outlet property="mHrTextField2" destination="LGd-hr-KV2" id="Vul-I3-O3b"/>
+                                                    <outlet property="mHrTextField20" destination="Clm-fl-5iQ" id="zaz-aA-tdu"/>
+                                                    <outlet property="mHrTextField3" destination="bb0-JQ-zzS" id="yBY-ea-wsN"/>
+                                                    <outlet property="mHrTextField4" destination="zd5-hp-MTY" id="mRj-md-F3c"/>
+                                                    <outlet property="mHrTextField5" destination="xYx-Wx-Ub1" id="V4J-Es-iMG"/>
+                                                    <outlet property="mHrTextField6" destination="oNg-75-qd5" id="aKU-IZ-miN"/>
+                                                    <outlet property="mHrTextField7" destination="3CF-Q0-ydf" id="Ri8-S7-yNh"/>
+                                                    <outlet property="mHrTextField8" destination="YeC-Gz-Z8P" id="PXO-6V-Qty"/>
+                                                    <outlet property="mHrTextField9" destination="o1j-tS-kK9" id="VIA-dP-656"/>
                                                 </connections>
                                             </view>
                                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kWj-PG-HEl" customClass="trackingView" customModule="Fundo" customModuleProvider="target">
@@ -2055,12 +2060,12 @@
                                                     <constraint firstItem="A57-Zg-dHT" firstAttribute="top" secondItem="JBJ-XX-rYQ" secondAttribute="bottom" constant="20" id="yZ4-z1-1p9"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="tf1" destination="sqF-91-hkY" id="h6g-rP-Ped"/>
-                                                    <outlet property="tf2" destination="A57-Zg-dHT" id="TS2-yz-WPV"/>
-                                                    <outlet property="tf3" destination="JBJ-XX-rYQ" id="6h9-nS-eNs"/>
-                                                    <outlet property="tf4" destination="JXF-HS-JpS" id="zJM-Bh-NRz"/>
-                                                    <outlet property="tf5" destination="zGN-U5-v8l" id="SQW-H3-hZe"/>
-                                                    <outlet property="tf6" destination="xu7-XK-dSQ" id="ZiC-ns-9en"/>
+                                                    <outlet property="mTrackingTextField1" destination="sqF-91-hkY" id="eVQ-om-IXW"/>
+                                                    <outlet property="mTrackingTextField2" destination="A57-Zg-dHT" id="3TG-T6-foB"/>
+                                                    <outlet property="mTrackingTextField3" destination="JBJ-XX-rYQ" id="wV3-Rw-1lh"/>
+                                                    <outlet property="mTrackingTextField4" destination="JXF-HS-JpS" id="2BP-ho-clS"/>
+                                                    <outlet property="mTrackingTextField5" destination="zGN-U5-v8l" id="K5o-GR-Z7n"/>
+                                                    <outlet property="mTrackingTextField6" destination="xu7-XK-dSQ" id="Ujz-7G-h8R"/>
                                                     <outlet property="trackingCancelBtn" destination="xEt-OM-VhP" id="scE-MK-yRU"/>
                                                     <outlet property="trackingEditBtn" destination="gbB-Vn-ZDJ" id="dpX-Ig-CqH"/>
                                                     <outlet property="trackingsaveBtn" destination="PaA-kh-HYQ" id="aa9-0J-MLk"/>
@@ -2123,6 +2128,24 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="425" id="qDF-Ht-MLW"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                                <integer key="value" value="3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="NO"/>
+                                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                                <size key="value" width="0.0" height="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                                <integer key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                                <real key="value" value="0.59999999999999998"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="point" keyPath="cellInset">
+                                                                <point key="value" x="0.0" y="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <visualEffectView hidden="YES" opaque="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vIV-0f-J0R">
                                                         <rect key="frame" x="-4" y="-410" width="383" height="2110"/>
@@ -2355,20 +2378,20 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gre-JZ-LCi">
-                                                                <rect key="frame" x="0.0" y="31.5" width="275" height="1"/>
+                                                                <rect key="frame" x="0.0" y="32" width="275" height="1"/>
                                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="m0s-U1-S2z"/>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reason" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHm-0Y-Qbu">
-                                                                <rect key="frame" x="20" y="52.5" width="58" height="20.5"/>
+                                                                <rect key="frame" x="20" y="53" width="58" height="21"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                 <color key="textColor" red="0.23137254900000001" green="0.32549019610000002" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oOR-Qf-Xk8">
-                                                                <rect key="frame" x="122.5" y="173" width="30" height="33"/>
+                                                                <rect key="frame" x="123" y="174" width="30" height="33"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                                 <state key="normal" title="OK">
                                                                     <color key="titleColor" red="0.23137254900000001" green="0.32549019610000002" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -2378,7 +2401,7 @@
                                                                 </connections>
                                                             </button>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="pkI-6d-0WK">
-                                                                <rect key="frame" x="20" y="88" width="240" height="70"/>
+                                                                <rect key="frame" x="20" y="89" width="240" height="70"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="70" id="52N-bU-OVj"/>
@@ -2404,6 +2427,11 @@
                                                             <constraint firstItem="pkI-6d-0WK" firstAttribute="top" secondItem="nHm-0Y-Qbu" secondAttribute="bottom" constant="15" id="wpr-wy-0hX"/>
                                                             <constraint firstItem="oOR-Qf-Xk8" firstAttribute="centerX" secondItem="1cB-nw-YY4" secondAttribute="centerX" id="z86-NW-M35"/>
                                                         </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
                                                     </view>
                                                     <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="5VY-bD-hGk">
                                                         <rect key="frame" x="62" y="400" width="250" height="50"/>
@@ -2489,6 +2517,7 @@
                                             <constraint firstItem="Vaq-cX-Y4g" firstAttribute="top" secondItem="mub-NG-6xe" secondAttribute="bottom" id="DJ0-KY-Wa7"/>
                                             <constraint firstAttribute="bottom" secondItem="kWj-PG-HEl" secondAttribute="bottom" id="DXV-5t-euN"/>
                                             <constraint firstItem="SaN-vB-A8d" firstAttribute="leading" secondItem="164-60-NOy" secondAttribute="leading" id="DvQ-n1-0Q7"/>
+                                            <constraint firstItem="gyu-FP-9Be" firstAttribute="top" secondItem="mub-NG-6xe" secondAttribute="bottom" constant="-192" id="FhB-rs-bwx"/>
                                             <constraint firstItem="kWj-PG-HEl" firstAttribute="trailing" secondItem="Flw-vH-Hdp" secondAttribute="trailing" id="IM0-DU-rmW"/>
                                             <constraint firstAttribute="trailing" secondItem="JLV-9x-CVO" secondAttribute="trailing" id="ITT-9A-Yy1"/>
                                             <constraint firstItem="sRQ-6E-8sI" firstAttribute="top" secondItem="mub-NG-6xe" secondAttribute="bottom" id="Is1-82-mJR"/>
@@ -2519,6 +2548,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Vaq-cX-Y4g" secondAttribute="trailing" id="v5k-Nk-zzh"/>
                                             <constraint firstItem="SaN-vB-A8d" firstAttribute="top" secondItem="mub-NG-6xe" secondAttribute="bottom" id="vaH-Ph-2vd"/>
                                             <constraint firstItem="G8t-Fj-lBy" firstAttribute="top" secondItem="mub-NG-6xe" secondAttribute="bottom" constant="-40" id="xEW-dz-kfK"/>
+                                            <constraint firstItem="gyu-FP-9Be" firstAttribute="centerX" secondItem="164-60-NOy" secondAttribute="centerX" id="yOL-Vi-hUF"/>
                                             <constraint firstItem="kWj-PG-HEl" firstAttribute="trailing" secondItem="JLV-9x-CVO" secondAttribute="trailing" id="ybo-UO-TJ8"/>
                                         </constraints>
                                     </view>
@@ -2566,7 +2596,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Engineers" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaJ-75-xxk">
-                                        <rect key="frame" x="60" y="-0.5" width="86.5" height="21.5"/>
+                                        <rect key="frame" x="60" y="-1" width="87" height="22"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" red="0.23137254900000001" green="0.32549019610000002" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
@@ -2612,26 +2642,27 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="375" height="1700"/>
                     <connections>
-                        <outlet property="attendanceCollectionView" destination="5VY-bD-hGk" id="rPH-Ta-uaS"/>
-                        <outlet property="attendanceOutlet" destination="Flw-vH-Hdp" id="7dE-bU-9tW"/>
-                        <outlet property="attendancePopupOutlet" destination="4sh-kn-Vmy" id="ing-Nd-rQl"/>
-                        <outlet property="bankOutlet" destination="b4J-cs-YtC" id="9Ic-Fy-9Zc"/>
-                        <outlet property="blurView" destination="vIV-0f-J0R" id="4ig-PM-8Gh"/>
-                        <outlet property="calenderView" destination="osN-uA-NBF" id="mGL-M9-Z1E"/>
-                        <outlet property="containerHeight" destination="bAt-HW-AWR" id="Qfu-GQ-Ow2"/>
-                        <outlet property="containerView" destination="164-60-NOy" id="UCb-bK-R4R"/>
-                        <outlet property="customPicker" destination="qnD-Vj-cGT" id="4Re-qS-KzN"/>
-                        <outlet property="employeeNameLabel" destination="uhC-wT-aNu" id="ZAW-Pc-C0R"/>
-                        <outlet property="engineerInfoOutlet" destination="SaN-vB-A8d" id="EOM-iZ-mrD"/>
-                        <outlet property="headerViewHeight" destination="beh-as-B5u" id="DXV-AO-3Iy"/>
-                        <outlet property="hrDataOutlet" destination="Vaq-cX-Y4g" id="7ie-BQ-I2I"/>
-                        <outlet property="inOutTimeView" destination="XKX-zQ-h1R" id="vGm-M3-E2W"/>
-                        <outlet property="personalOutlet" destination="JLV-9x-CVO" id="RLv-DZ-TIb"/>
-                        <outlet property="profileOutlet" destination="sRQ-6E-8sI" id="kkY-zX-CXK"/>
-                        <outlet property="reasonView" destination="1cB-nw-YY4" id="BRm-wj-Zed"/>
-                        <outlet property="scrollView" destination="fgy-us-M4g" id="HQn-FR-BBp"/>
-                        <outlet property="tableView" destination="7bD-SW-248" id="V2U-Cr-wpV"/>
-                        <outlet property="trackingOutlet" destination="kWj-PG-HEl" id="4G6-ot-pyh"/>
+                        <outlet property="employeeImage" destination="mub-NG-6xe" id="I1B-9W-yxk"/>
+                        <outlet property="mAttendanceCollectionView" destination="5VY-bD-hGk" id="VpE-8O-B8N"/>
+                        <outlet property="mAttendanceOutlet" destination="Flw-vH-Hdp" id="URd-dG-whC"/>
+                        <outlet property="mAttendancePopupOutlet" destination="4sh-kn-Vmy" id="aLF-hw-dXe"/>
+                        <outlet property="mBankOutlet" destination="b4J-cs-YtC" id="A6m-wF-Fmc"/>
+                        <outlet property="mBlurView" destination="vIV-0f-J0R" id="hpN-8H-5dp"/>
+                        <outlet property="mCalenderView" destination="osN-uA-NBF" id="jWN-ET-XMi"/>
+                        <outlet property="mContainerHeight" destination="bAt-HW-AWR" id="E5t-rI-f8b"/>
+                        <outlet property="mContainerView" destination="164-60-NOy" id="CBY-TJ-7WQ"/>
+                        <outlet property="mCustomPicker" destination="qnD-Vj-cGT" id="cFM-An-rKW"/>
+                        <outlet property="mEmployeeNameLabel" destination="uhC-wT-aNu" id="j4F-bq-zH5"/>
+                        <outlet property="mEngineerInfoOutlet" destination="SaN-vB-A8d" id="ZO8-UA-mA8"/>
+                        <outlet property="mHrDataOutlet" destination="Vaq-cX-Y4g" id="hey-VK-nfJ"/>
+                        <outlet property="mImageActivityIndicator" destination="gyu-FP-9Be" id="h6S-qI-wkY"/>
+                        <outlet property="mInOutTimeView" destination="XKX-zQ-h1R" id="uSp-3A-3oF"/>
+                        <outlet property="mMenuTableView" destination="7bD-SW-248" id="E3X-49-60z"/>
+                        <outlet property="mPersonalOutlet" destination="JLV-9x-CVO" id="cNa-au-X3P"/>
+                        <outlet property="mProfileOutlet" destination="sRQ-6E-8sI" id="xvQ-cU-1oM"/>
+                        <outlet property="mReasonView" destination="1cB-nw-YY4" id="OLY-yR-c48"/>
+                        <outlet property="mScrollView" destination="fgy-us-M4g" id="n31-qq-OAe"/>
+                        <outlet property="mTrackingOutlet" destination="kWj-PG-HEl" id="cyQ-Ex-hn5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -2669,7 +2700,6 @@
     </scenes>
     <resources>
         <image name="editbtn" width="42" height="45"/>
-        <image name="images" width="284" height="177"/>
         <image name="logo-2" width="97" height="106"/>
         <image name="logout1" width="48" height="57"/>
         <image name="menu" width="54" height="54"/>

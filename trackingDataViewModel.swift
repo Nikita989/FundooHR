@@ -14,33 +14,39 @@ import UIKit
 
 class trackingDataViewModel: NSObject,trackingViewModelProtocol {
     
-    // creating object of tracking controller
-    let trackingControllerObj = trackingController()
     
     // variable of type tracking data model
-    var trackingValues:trackingDataModel?
+    var mTrackingValues:trackingDataModel?
     
     // variable of type tracking view protocol
-    var trackingViewProc:trackingViewProtocol?
+    var mTrackingViewProc:trackingViewProtocol?
+    
+    
+    init(trackingViewProtocolObj:trackingViewProtocol) {
+        
+        mTrackingViewProc = trackingViewProtocolObj
+    }
     
     
     // making call to controller to fetch tracking data
     func fetchTrackingDataFromController()
     {
-        trackingControllerObj.trackingViewModelProtocalvar = self
+        // creating object of tracking controller
+        let trackingControllerObj = trackingController(pTrackingViewModelProtocolObj: self)
         trackingControllerObj.fetchTrackingDataFromServices()
     }
     
     // function to send fetched tracking data to view
     func sendTrackingDataToView(values:trackingDataModel)
     {
-        trackingValues = values
-        trackingViewProc?.setTrackingData()
+        mTrackingValues = values
+        mTrackingViewProc?.setTrackingData()
     }
     
     //  function to send updated data to tracking controller
     func sendUpdatedTrackingDataToController(trackingData:trackingDataModel)
     {
+        let trackingControllerObj = trackingController(pTrackingViewModelProtocolObj: self)
         trackingControllerObj.sendUpdatedTrackingDataToServices(trackingData: trackingData)
     }
     

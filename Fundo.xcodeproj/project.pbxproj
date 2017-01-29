@@ -12,7 +12,7 @@
 		0A6E60971E0BB1DA00B06565 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6E60951E0BB1DA00B06565 /* CellView.swift */; };
 		0A6E60981E0BB1DA00B06565 /* CellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A6E60961E0BB1DA00B06565 /* CellView.xib */; };
 		701073ED1E1E2D150003D522 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 701073EC1E1E2D150003D522 /* SWRevealViewController.m */; };
-		701073EF1E1E327B0003D522 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701073EE1E1E327B0003D522 /* loginViewController.swift */; };
+		701073EF1E1E327B0003D522 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701073EE1E1E327B0003D522 /* LoginViewController.swift */; };
 		701073F11E1E59110003D522 /* sideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701073F01E1E59110003D522 /* sideMenu.swift */; };
 		701073F31E1E59380003D522 /* sideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701073F21E1E59380003D522 /* sideMenuTableViewCell.swift */; };
 		701073F51E1E5CF40003D522 /* dashBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701073F41E1E5CF40003D522 /* dashBoardViewController.swift */; };
@@ -109,7 +109,7 @@
 		3CF2EF1E5655983CF499144C /* Pods_FundoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FundoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		701073EB1E1E2D150003D522 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		701073EC1E1E2D150003D522 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
-		701073EE1E1E327B0003D522 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
+		701073EE1E1E327B0003D522 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		701073F01E1E59110003D522 /* sideMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenu.swift; sourceTree = "<group>"; };
 		701073F21E1E59380003D522 /* sideMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		701073F41E1E5CF40003D522 /* dashBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dashBoardViewController.swift; sourceTree = "<group>"; };
@@ -241,7 +241,7 @@
 				70D5B25A1E07C800006CA48D /* profileView.swift */,
 				0A6D6F8A1E12556B00A327C4 /* AttendancePopUp.swift */,
 				0A1675C51E128FFD001EB6C6 /* attendanceCollectionViewCell.swift */,
-				701073EE1E1E327B0003D522 /* loginViewController.swift */,
+				701073EE1E1E327B0003D522 /* LoginViewController.swift */,
 				701073F01E1E59110003D522 /* sideMenu.swift */,
 				701073F21E1E59380003D522 /* sideMenuTableViewCell.swift */,
 				701073F81E1E5DFD0003D522 /* dashboardCollectionViewCell.swift */,
@@ -750,7 +750,7 @@
 				702F164B1E1A78B600CD268D /* hrDataProtocols.swift in Sources */,
 				701073ED1E1E2D150003D522 /* SWRevealViewController.m in Sources */,
 				707A24AC1E1CBD2C0081FCD6 /* profileDataModel.swift in Sources */,
-				701073EF1E1E327B0003D522 /* loginViewController.swift in Sources */,
+				701073EF1E1E327B0003D522 /* LoginViewController.swift in Sources */,
 				705A5ECC1E39C1D50011C529 /* loginViewModel.swift in Sources */,
 				70847D4A1DF6CBD50073C0F9 /* AppDelegate.swift in Sources */,
 				70E85D711E1D1C110041B148 /* trackindgServices.swift in Sources */,

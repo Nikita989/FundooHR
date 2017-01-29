@@ -1,7 +1,10 @@
 //
 //  profileDataModel.swift
 //  Fundo
-//
+
+//  purpose:
+//  1. model class for profile data
+
 //  Created by BridgeLabz Solution LLP on 04/01/17.
 //  Copyright © 2017 BridgeLabz Solution LLP. All rights reserved.
 //
@@ -10,6 +13,7 @@ import UIKit
 
 class profileDataModel: NSObject {
     
+    // variable of type string to store profile data values
     var diploma:String?
     var degree:String?
     var discipline:String?
@@ -20,6 +24,8 @@ class profileDataModel: NSObject {
     var trainingDuration:String?
     var training:String?
     
+    
+    // constructor of profile DataModel
     init(diplomaVar:String,degreeVar:String,disciplineVar:String,yop:String,aggregateVar:String,finalyearPercentagevar:String,trainingInstVar:String,trainingDurationVar:String,trainingVar:String) {
         
         self.diploma = diplomaVar
@@ -33,5 +39,5 @@ class profileDataModel: NSObject {
         self.training = trainingVar
         
     }
-
+    
 }
