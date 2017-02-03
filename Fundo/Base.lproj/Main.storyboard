@@ -189,7 +189,7 @@
         <!--Side Menu-->
         <scene sceneID="KMn-t3-7Bt">
             <objects>
-                <viewController id="eUU-6f-e8Q" customClass="sideMenu" customModule="Fundo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eUU-6f-e8Q" customClass="SideMenu" customModule="Fundo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mdU-uS-vra"/>
                         <viewControllerLayoutGuide type="bottom" id="N3n-9z-Hxc"/>
@@ -236,7 +236,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sex-U2-h8q" id="uuW-Hh-Ber">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y51-mj-m8f">
@@ -296,7 +296,7 @@
         <!--Dash Board View Controller-->
         <scene sceneID="La0-dg-yx4">
             <objects>
-                <viewController storyboardIdentifier="dashBoard" id="acw-4q-Mx0" customClass="dashBoardViewController" customModule="Fundo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="dashBoard" id="acw-4q-Mx0" customClass="DashBoardViewController" customModule="Fundo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="k4r-VQ-D3p"/>
                         <viewControllerLayoutGuide type="bottom" id="G9s-3F-ME7"/>
@@ -347,7 +347,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dashBoardCell" id="hP5-wW-O5I" customClass="dashboardCollectionViewCell" customModule="Fundo" customModuleProvider="target">
-                                        <rect key="frame" x="32" y="0.0" width="331" height="220"/>
+                                        <rect key="frame" x="31.5" y="0.0" width="331" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="331" height="220"/>
@@ -406,7 +406,7 @@
                                         <rect key="frame" x="0.0" y="28" width="263" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yMz-v8-him" id="ZXg-FA-nN7">
-                                            <rect key="frame" x="0.0" y="0.0" width="263" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="263" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -452,7 +452,7 @@
                                                     <action selector="menuBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rK0-aL-dUi"/>
                                                 </connections>
                                             </button>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4J-cs-YtC" userLabel="bank Outlet" customClass="bankView" customModule="Fundo" customModuleProvider="target">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b4J-cs-YtC" userLabel="bank Outlet" customClass="BankView" customModule="Fundo" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="350" width="375" height="400"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UEn-dv-st0">
@@ -636,7 +636,7 @@
                                                     <outlet property="mBankTextField6" destination="Q04-sa-Ujb" id="MJ7-D6-kgf"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRQ-6E-8sI" customClass="profileView" customModule="Fundo" customModuleProvider="target">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sRQ-6E-8sI" customClass="ProfileView" customModule="Fundo" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="350" width="375" height="600"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKb-Rq-f1w">
@@ -882,7 +882,7 @@
                                                     <outlet property="profileSaveBtn" destination="xCv-t0-G76" id="D8m-OE-EAP"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JLV-9x-CVO" customClass="personalView" customModule="Fundo" customModuleProvider="target">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JLV-9x-CVO" customClass="PersonalView" customModule="Fundo" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="350" width="375" height="1350"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HfO-bC-F06">
@@ -1171,7 +1171,7 @@
                                                     <outlet property="personalSaveBtn" destination="KGp-Yj-UIO" id="2b3-8m-e30"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SaN-vB-A8d" customClass="engineerInfoView" customModule="Fundo" customModuleProvider="target">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SaN-vB-A8d" customClass="EngineerInfoView" customModule="Fundo" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="350" width="375" height="500"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Engineer's Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Bs-Ca-12d">
@@ -1890,7 +1890,7 @@
                                                     <outlet property="mHrTextField9" destination="o1j-tS-kK9" id="VIA-dP-656"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kWj-PG-HEl" customClass="trackingView" customModule="Fundo" customModuleProvider="target">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kWj-PG-HEl" customClass="TrackingView" customModule="Fundo" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="350" width="375" height="1150"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tracking Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTD-ie-NG9">
@@ -2072,7 +2072,7 @@
                                                     <outlet property="trakingActivityIndicator" destination="DGc-AN-5lx" id="OYZ-pL-2Ha"/>
                                                 </connections>
                                             </view>
-                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Flw-vH-Hdp" customClass="attendanceView" customModule="Fundo" customModuleProvider="target">
+                                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Flw-vH-Hdp" customClass="AttendanceView" customModule="Fundo" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="350" width="375" height="1150"/>
                                                 <subviews>
                                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="NH1-jj-qj9">

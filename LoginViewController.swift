@@ -17,7 +17,7 @@ import CoreData
 
 var engineerId:String = "40016EI"
 
-class LoginViewController: UIViewController,loginViewProtocol {
+class LoginViewController: UIViewController,LoginViewProtocol {
     
     // outlet of email textfield
     @IBOutlet weak var mEmailField: UITextField!
@@ -47,7 +47,7 @@ class LoginViewController: UIViewController,loginViewProtocol {
     var mOffsetCheckBOOL = false
     
     // variable of type login view model
-    var mloginViewModelObj:loginViewModel?
+    var mloginViewModelObj:LoginViewModel?
     
     override func viewDidLoad()
     {
@@ -57,7 +57,7 @@ class LoginViewController: UIViewController,loginViewProtocol {
         mLogo.layer.shadowColor = UIColor.black.cgColor
         
         // create object of login view model
-        mloginViewModelObj = loginViewModel(loginViewProtocolObj: self)
+        mloginViewModelObj = LoginViewModel(loginViewProtocolObj: self)
     }
     
     // action for login button and validating email id and password

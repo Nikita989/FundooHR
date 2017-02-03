@@ -35,7 +35,7 @@ enum AttendanceMarkCollectionViewEnum:Int {
     case UNMARK
 }
 
-class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,bankviewProtocol,personalviewProtocal,profileViewProtocal,trackingViewProtocol,enggInfoViewProtocol,hrviewProtocal,attendanceViewProtocol{
+class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,BankviewProtocol,PersonalviewProtocal,ProfileViewProtocal,TrackingViewProtocol,EnggInfoViewProtocol,HrviewProtocal,AttendanceViewProtocol{
     
     // outlet of ImageActivityIndicator
     @IBOutlet weak var mImageActivityIndicator: UIActivityIndicatorView!
@@ -62,13 +62,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet var mMenuTableView:UITableView?
     
     // outlet of tracking view
-    @IBOutlet weak var mTrackingOutlet: trackingView!
+    @IBOutlet weak var mTrackingOutlet: TrackingView!
     
     // outlet of container view height
     @IBOutlet weak var mContainerHeight: NSLayoutConstraint!
     
     // outlet of profile view
-    @IBOutlet weak var mProfileOutlet: profileView!
+    @IBOutlet weak var mProfileOutlet: ProfileView!
     
     // outlet of container view
     @IBOutlet weak var mContainerView: UIView!
@@ -83,47 +83,47 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     @IBOutlet weak var mCustomPicker: UIPickerView!
     
     // outlet of bank view
-    @IBOutlet weak var mBankOutlet: bankView!
+    @IBOutlet weak var mBankOutlet: BankView!
     
     // outlet of hr data view
     @IBOutlet weak var mHrDataOutlet: HRDataView!
     
     // outlet of engineer info view
-    @IBOutlet weak var mEngineerInfoOutlet: engineerInfoView!
+    @IBOutlet weak var mEngineerInfoOutlet: EngineerInfoView!
     
     // outlet of personal view
-    @IBOutlet weak var mPersonalOutlet: personalView!
+    @IBOutlet weak var mPersonalOutlet: PersonalView!
     
     // outlet of attendance view
-    @IBOutlet weak var mAttendanceOutlet: attendanceView!
+    @IBOutlet weak var mAttendanceOutlet: AttendanceView!
     
     // create object of hr data viewModel
-    var mHrDataViewModelVar:hrDataViewModel?
+    var mHrDataViewModelVar:HrDataViewModel?
     
     // create object of personal viewModel
-    var mPersonalViewModelVar:personalViewModel?
+    var mPersonalViewModelVar:PersonalViewModel?
     
     // create object of profile data viewModel
-    var mProfileViewModelVar:profileDataViewModel?
+    var mProfileViewModelVar:ProfileDataViewModel?
     
     // create object of bank viewModel
-    var mBankViewModelObj:bankViewModel?
+    var mBankViewModelObj:BankViewModel?
     
     // create object of tracking data viewModel
-    var mTrackingViewModelObj:trackingDataViewModel?
+    var mTrackingViewModelObj:TrackingDataViewModel?
     
     // create object of engineer info viewModel
-    var mEnggInfoObj:enggInfoViewModel?
+    var mEnggInfoObj:EnggInfoViewModel?
     
     // create object of attendance viewModel
-    var mAttendanceViewModelObj:attendanceViewModel?
+    var mAttendanceViewModelObj:AttendanceViewModel?
     
     // variable to store index
     var mIndex:Int?
     
     // variable of type cgLayer
     var mLayer:CGLayer?
-    var mAtt:attendanceView?
+    var mAtt:AttendanceView?
     
     // outlet of employee image view
     @IBOutlet weak var employeeImage: UIImageView!
@@ -178,7 +178,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var mAttendanceKeys:[String]?
     
     // variable to store array of type attendance model
-    var mAttendanceValues:[attendanceModel]?
+    var mAttendanceValues:[AttendanceModel]?
     
     // variable to hold image
     var mSelectedImage:UIImage?
@@ -217,13 +217,13 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         mImageActivityIndicator.startAnimating()
         
         // initialising the constructors of respective classes
-        mAttendanceViewModelObj = attendanceViewModel(attendanceViewProtocolObj: self)
-        mEnggInfoObj = enggInfoViewModel(enggInfoViewProtocolObj: self)
-        mTrackingViewModelObj = trackingDataViewModel(trackingViewProtocolObj: self)
-        mBankViewModelObj = bankViewModel(mBankViewProtocolObj: self)
-        mProfileViewModelVar = profileDataViewModel(mProfileViewProtocolObj: self)
-        mPersonalViewModelVar = personalViewModel(mPersonalViewProtocolObj: self)
-        mHrDataViewModelVar = hrDataViewModel(mHrViewProtocolObj: self)
+        mAttendanceViewModelObj = AttendanceViewModel(attendanceViewProtocolObj: self)
+        mEnggInfoObj = EnggInfoViewModel(enggInfoViewProtocolObj: self)
+        mTrackingViewModelObj = TrackingDataViewModel(trackingViewProtocolObj: self)
+        mBankViewModelObj = BankViewModel(mBankViewProtocolObj: self)
+        mProfileViewModelVar = ProfileDataViewModel(mProfileViewProtocolObj: self)
+        mPersonalViewModelVar = PersonalViewModel(mPersonalViewProtocolObj: self)
+        mHrDataViewModelVar = HrDataViewModel(mHrViewProtocolObj: self)
         mEnggInfoObj?.fetchDataFromController()
         mAttendanceCollectionView.delegate = self
         mAttendanceCollectionView.dataSource = self
@@ -490,7 +490,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let bankString4 = mBankOutlet.mBankTextField4?.text
         let bankString5 = mBankOutlet.mBankTextField5?.text
         let bankString6 = mBankOutlet.mBankTextField6?.text
-        let bankObj = bankDataModel(accountNum: bankString1!,bankNAme: bankString2!,ifscCode: bankString3!,pan: bankString4!,paySalary: bankString5!,reasonVar: bankString6!)
+        let bankObj = BankDataModel(accountNum: bankString1!,bankNAme: bankString2!,ifscCode: bankString3!,pan: bankString4!,paySalary: bankString5!,reasonVar: bankString6!)
         mBankViewModelObj?.sendUpdatedBankDataToController(bankData: bankObj)
     }
     
@@ -536,7 +536,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let personalData9 = mPersonalOutlet.mPersonalTextField7?.text
         let personalData10 = mPersonalOutlet.mPersonalTextView10?.text
         let employeeName = mPersonalOutlet.nameTextField?.text
-        let personalObj = personalDataModel(annualSalary: personalData1!,dob: personalData2!,email: personalData3!,empName:employeeName!,fatherMobile: personalData5!,fatherName: personalData6!,mobile: personalData7!,mumbaiAddr: personalData8!,occupation: personalData9!,permanantAddr: personalData10!)
+        let personalObj = PersonalDataModel(annualSalary: personalData1!,dob: personalData2!,email: personalData3!,empName:employeeName!,fatherMobile: personalData5!,fatherName: personalData6!,mobile: personalData7!,mumbaiAddr: personalData8!,occupation: personalData9!,permanantAddr: personalData10!)
         mPersonalViewModelVar?.sendUpdatedPersonalDataToController(personalData: personalObj)
     }
     
@@ -609,7 +609,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let profileData7 = mProfileOutlet.mProfileTextField7?.text
         let profileData8 = mProfileOutlet.mProfileTextField8?.text
         let profileData9 = mProfileOutlet.mProfileTextView9?.text
-        let profileeObj = profileDataModel(diplomaVar: profileData1!,degreeVar: profileData2!,disciplineVar: profileData3!,yop: profileData4!,aggregateVar: profileData5!,finalyearPercentagevar: profileData6!,trainingInstVar: profileData7!,trainingDurationVar: profileData8!,trainingVar: profileData9!)
+        let profileeObj = ProfileDataModel(diplomaVar: profileData1!,degreeVar: profileData2!,disciplineVar: profileData3!,yop: profileData4!,aggregateVar: profileData5!,finalyearPercentagevar: profileData6!,trainingInstVar: profileData7!,trainingDurationVar: profileData8!,trainingVar: profileData9!)
         mProfileViewModelVar?.sendUpdatedProfileDataToController(profileData: profileeObj)
     }
     
@@ -650,7 +650,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let trackingData4 = mTrackingOutlet.mTrackingTextField4?.text
         let trackingData5 = mTrackingOutlet.mTrackingTextField5?.text
         let trackingData6 = mTrackingOutlet.mTrackingTextField6?.text
-        let trackingObj = trackingDataModel(blEndDate: trackingData3!,blStartDate: trackingData2!,curWeek: trackingData4!,numOfWeeks: trackingData5!,stack: trackingData1!,week1: trackingData6!)
+        let trackingObj = TrackingDataModel(blEndDate: trackingData3!,blStartDate: trackingData2!,curWeek: trackingData4!,numOfWeeks: trackingData5!,stack: trackingData1!,week1: trackingData6!)
         mTrackingViewModelObj?.sendUpdatedTrackingDataToController(trackingData: trackingObj)
     }
     
@@ -702,7 +702,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let status = mHrDataOutlet.employeeStatusTextField?.text
         let hrData12 = mHrDataOutlet.mHrTextField12?.text
         let hrData13 = mHrDataOutlet.mHrTextField13?.text
-        let hrObj = hrDataModel(startDate: hrData3!,contractInitiated: hrData8!,contractSigned: hrData9!,company:companyVal!,companyJoinDate: hrData4!,companyLeaveDate: hrData5!,contractSignDate: hrData10!,employeeStatus:status!,enggContractInitiated: hrData7!,enggContractSigned: hrData6!,fellowshipPeriod: hrData2!,hiringCity: hrData1!,initiateTransfer: hrData11!)
+        let hrObj = HrDataModel(startDate: hrData3!,contractInitiated: hrData8!,contractSigned: hrData9!,company:companyVal!,companyJoinDate: hrData4!,companyLeaveDate: hrData5!,contractSignDate: hrData10!,employeeStatus:status!,enggContractInitiated: hrData7!,enggContractSigned: hrData6!,fellowshipPeriod: hrData2!,hiringCity: hrData1!,initiateTransfer: hrData11!)
         mHrDataViewModelVar?.sendUpdatedHrDataToController(hrData: hrObj)
     }
     
@@ -775,7 +775,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         let status = String(describing:mMarkedStatus)
         let timeStampString = String(describing: mTimestamp2!)
-        let attendanceObj = attendancePopUpModel(timeStampVar:timeStampString,enggId: "",attendanceStatusVar: mSelectedAttendance!,markedStatusVar: status,punchInVar: mInTime!,punchOutVar: mOutTime!,reasonVar: mReason!)
+        let attendanceObj = AttendancePopUpModel(timeStampVar:timeStampString,enggId: "",attendanceStatusVar: mSelectedAttendance!,markedStatusVar: status,punchInVar: mInTime!,punchOutVar: mOutTime!,reasonVar: mReason!)
         mAttendanceViewModelObj?.setUpdatedAttendanceToController(attendanceData: attendanceObj)
     }
     
@@ -805,12 +805,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     {
         mBankOutlet.bankActivityIndicator?.isHidden = true
         mBankOutlet.bankActivityIndicator?.stopAnimating()
-        mBankOutlet.mBankTextField1?.text = mBankViewModelObj?.bankvalues?.accNumber
-        mBankOutlet.mBankTextField2?.text = mBankViewModelObj?.bankvalues?.bankName
-        mBankOutlet.mBankTextField3?.text = mBankViewModelObj?.bankvalues?.bankIfscCode
-        mBankOutlet.mBankTextField4?.text = mBankViewModelObj?.bankvalues?.bankPan
-        mBankOutlet.mBankTextField5?.text = mBankViewModelObj?.bankvalues?.BankPaySalary
-        mBankOutlet.mBankTextField6?.text = mBankViewModelObj?.bankvalues?.reason
+        mBankOutlet.mBankTextField1?.text = mBankViewModelObj?.bankvalues?.mAccNumber
+        mBankOutlet.mBankTextField2?.text = mBankViewModelObj?.bankvalues?.mBankName
+        mBankOutlet.mBankTextField3?.text = mBankViewModelObj?.bankvalues?.mBankIfscCode
+        mBankOutlet.mBankTextField4?.text = mBankViewModelObj?.bankvalues?.mBankPan
+        mBankOutlet.mBankTextField5?.text = mBankViewModelObj?.bankvalues?.mBankPaySalary
+        mBankOutlet.mBankTextField6?.text = mBankViewModelObj?.bankvalues?.mReason
     }
     
     // setting values for personal view
@@ -819,43 +819,43 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         mPersonalOutlet.personalActivityIndicator?.isHidden = true
         mPersonalOutlet.personalActivityIndicator?.stopAnimating()
         mPersonalOutlet.mPersonalTextField1?.text = engineerId
-        mPersonalOutlet.mPersonalTextField2?.text = mPersonalViewModelVar?.personalValues?.emailIdModel
-        mPersonalOutlet.mPersonalTextField3?.text = mPersonalViewModelVar?.personalValues?.mobileModel
-        mPersonalOutlet.mPersonalTextField4?.text = mPersonalViewModelVar?.personalValues?.dateOfBirthModel
-        mPersonalOutlet.mPersonalTextField5?.text = mPersonalViewModelVar?.personalValues?.fatherNameModel
-        mPersonalOutlet.mPersonalTextField6?.text = mPersonalViewModelVar?.personalValues?.fatherMobileModel
-        mPersonalOutlet.mPersonalTextField7?.text = mPersonalViewModelVar?.personalValues?.occupationModel
-        mPersonalOutlet.mPersonalTextField8?.text = mPersonalViewModelVar?.personalValues?.annualSalaryModel
-        mPersonalOutlet.mPersonalTextView9?.text = mPersonalViewModelVar?.personalValues?.mumbaiAddressModel
-        mPersonalOutlet.mPersonalTextView10?.text = mPersonalViewModelVar?.personalValues?.permenantAddress
-        mPersonalOutlet.nameTextField?.text = mPersonalViewModelVar?.personalValues?.employeeNameModel
+        mPersonalOutlet.mPersonalTextField2?.text = mPersonalViewModelVar?.mPersonalValues?.mEmailIdModel
+        mPersonalOutlet.mPersonalTextField3?.text = mPersonalViewModelVar?.mPersonalValues?.mMobileModel
+        mPersonalOutlet.mPersonalTextField4?.text = mPersonalViewModelVar?.mPersonalValues?.mDateOfBirthModel
+        mPersonalOutlet.mPersonalTextField5?.text = mPersonalViewModelVar?.mPersonalValues?.mFatherNameModel
+        mPersonalOutlet.mPersonalTextField6?.text = mPersonalViewModelVar?.mPersonalValues?.mFatherMobileModel
+        mPersonalOutlet.mPersonalTextField7?.text = mPersonalViewModelVar?.mPersonalValues?.mOccupationModel
+        mPersonalOutlet.mPersonalTextField8?.text = mPersonalViewModelVar?.mPersonalValues?.mAnnualSalaryModel
+        mPersonalOutlet.mPersonalTextView9?.text = mPersonalViewModelVar?.mPersonalValues?.mMumbaiAddressModel
+        mPersonalOutlet.mPersonalTextView10?.text = mPersonalViewModelVar?.mPersonalValues?.mPermenantAddress
+        mPersonalOutlet.nameTextField?.text = mPersonalViewModelVar?.mPersonalValues?.mEmployeeNameModel
     }
     
     // setting values for profile view
     func setProfileData() {
         mProfileOutlet.profileActivityIndicator?.isHidden = true
         mProfileOutlet.profileActivityIndicator?.stopAnimating()
-        mProfileOutlet.mProfileTextField1?.text = mProfileViewModelVar?.profileValues?.diploma
-        mProfileOutlet.mProfileTextField2?.text = mProfileViewModelVar?.profileValues?.degree
-        mProfileOutlet.mProfileTextField3?.text = mProfileViewModelVar?.profileValues?.discipline
-        mProfileOutlet.mProfileTextField4?.text = mProfileViewModelVar?.profileValues?.yearOfPassing
-        mProfileOutlet.mProfileTextField5?.text = mProfileViewModelVar?.profileValues?.aggregate
-        mProfileOutlet.mProfileTextField6?.text = mProfileViewModelVar?.profileValues?.finalYearPercentage
-        mProfileOutlet.mProfileTextField7?.text = mProfileViewModelVar?.profileValues?.trainingInstitute
-        mProfileOutlet.mProfileTextField8?.text = mProfileViewModelVar?.profileValues?.trainingDuration
-        mProfileOutlet.mProfileTextView9?.text = mProfileViewModelVar?.profileValues?.training
+        mProfileOutlet.mProfileTextField1?.text = mProfileViewModelVar?.profileValues?.mDiploma
+        mProfileOutlet.mProfileTextField2?.text = mProfileViewModelVar?.profileValues?.mDegree
+        mProfileOutlet.mProfileTextField3?.text = mProfileViewModelVar?.profileValues?.mDiscipline
+        mProfileOutlet.mProfileTextField4?.text = mProfileViewModelVar?.profileValues?.mYearOfPassing
+        mProfileOutlet.mProfileTextField5?.text = mProfileViewModelVar?.profileValues?.mAggregate
+        mProfileOutlet.mProfileTextField6?.text = mProfileViewModelVar?.profileValues?.mFinalYearPercentage
+        mProfileOutlet.mProfileTextField7?.text = mProfileViewModelVar?.profileValues?.mTrainingInstitute
+        mProfileOutlet.mProfileTextField8?.text = mProfileViewModelVar?.profileValues?.mTrainingDuration
+        mProfileOutlet.mProfileTextView9?.text = mProfileViewModelVar?.profileValues?.mTraining
     }
     
     // setting values for tracking view
     func setTrackingData() {
         mTrackingOutlet.trakingActivityIndicator?.isHidden = true
         mTrackingOutlet.trakingActivityIndicator?.stopAnimating()
-        mTrackingOutlet.mTrackingTextField1?.text = mTrackingViewModelObj?.mTrackingValues?.techStack
-        mTrackingOutlet.mTrackingTextField2?.text = mTrackingViewModelObj?.mTrackingValues?.startDate
-        mTrackingOutlet.mTrackingTextField3?.text = mTrackingViewModelObj?.mTrackingValues?.endDate
-        mTrackingOutlet.mTrackingTextField4?.text = mTrackingViewModelObj?.mTrackingValues?.currentWeek
-        mTrackingOutlet.mTrackingTextField5?.text = mTrackingViewModelObj?.mTrackingValues?.noOfWeeksLeft
-        mTrackingOutlet.mTrackingTextField6?.text = mTrackingViewModelObj?.mTrackingValues?.week
+        mTrackingOutlet.mTrackingTextField1?.text = mTrackingViewModelObj?.mTrackingValues?.mTechStack
+        mTrackingOutlet.mTrackingTextField2?.text = mTrackingViewModelObj?.mTrackingValues?.mStartDate
+        mTrackingOutlet.mTrackingTextField3?.text = mTrackingViewModelObj?.mTrackingValues?.mEndDate
+        mTrackingOutlet.mTrackingTextField4?.text = mTrackingViewModelObj?.mTrackingValues?.mCurrentWeek
+        mTrackingOutlet.mTrackingTextField5?.text = mTrackingViewModelObj?.mTrackingValues?.mNoOfWeeksLeft
+        mTrackingOutlet.mTrackingTextField6?.text = mTrackingViewModelObj?.mTrackingValues?.mWeek
     }
     
     // setting values for engineer view
@@ -865,18 +865,18 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         mEngineerInfoOutlet.engineerInfoActivityIndicator?.isHidden = true
         mEngineerInfoOutlet.engineerInfoActivityIndicator?.stopAnimating()
         mEngineerInfoOutlet.mEnggInfoLabel1?.text = engineerId
-        mEngineerInfoOutlet.mEnggInfoLabel2?.text = mEnggInfoObj?.mEnggInfoValues?.empStatus
-        mEngineerInfoOutlet.mEnggInfoLabel3?.text = mEnggInfoObj?.mEnggInfoValues?.company
-        mEngineerInfoOutlet.mEnggInfoLabel4?.text = mEnggInfoObj?.mEnggInfoValues?.mobile
-        mEngineerInfoOutlet.mEnggInfoLabel5?.text = mEnggInfoObj?.mEnggInfoValues?.emailId
-        mEngineerInfoOutlet.mEnggInfoLabel6?.text = mEnggInfoObj?.mEnggInfoValues?.startDate
-        mEngineerInfoOutlet.mEnggInfoLabel7?.text = mEnggInfoObj?.mEnggInfoValues?.cmpJoinDate
-        mEngineerInfoOutlet.mEnggInfoLabel8?.text = mEnggInfoObj?.mEnggInfoValues?.cmpLeaveDate
-        mLeavesTaken = mEnggInfoObj?.mEnggInfoValues?.leaveTaken
+        mEngineerInfoOutlet.mEnggInfoLabel2?.text = mEnggInfoObj?.mEnggInfoValues?.mEmpStatus
+        mEngineerInfoOutlet.mEnggInfoLabel3?.text = mEnggInfoObj?.mEnggInfoValues?.mCompany
+        mEngineerInfoOutlet.mEnggInfoLabel4?.text = mEnggInfoObj?.mEnggInfoValues?.mMobile
+        mEngineerInfoOutlet.mEnggInfoLabel5?.text = mEnggInfoObj?.mEnggInfoValues?.mEmailId
+        mEngineerInfoOutlet.mEnggInfoLabel6?.text = mEnggInfoObj?.mEnggInfoValues?.mStartDate
+        mEngineerInfoOutlet.mEnggInfoLabel7?.text = mEnggInfoObj?.mEnggInfoValues?.mCmpJoinDate
+        mEngineerInfoOutlet.mEnggInfoLabel8?.text = mEnggInfoObj?.mEnggInfoValues?.mCmpLeaveDate
+        mLeavesTaken = mEnggInfoObj?.mEnggInfoValues?.mLeaveTaken
         let leaveString = String(mLeavesTaken)
         mEngineerInfoOutlet.mEnggInfoLabel9?.text = leaveString
-        mEmployeeNameLabel.text = mEnggInfoObj?.mEnggInfoValues?.empName
-        let image = mEnggInfoObj?.mEnggInfoValues?.empImage
+        mEmployeeNameLabel.text = mEnggInfoObj?.mEnggInfoValues?.mEmpName
+        let image = mEnggInfoObj?.mEnggInfoValues?.mEmpImage
         if let url = NSURL(string: image!)
         {
             if let data = NSData(contentsOf: url as URL) {
@@ -891,19 +891,19 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     {
         mHrDataOutlet.hrActivityIndicator?.isHidden = true
         mHrDataOutlet.hrActivityIndicator?.stopAnimating()
-        mHrDataOutlet.mHrTextField1?.text = mHrDataViewModelVar?.hrValues?.hiringCityModel
-        mHrDataOutlet.mHrTextField3?.text = mHrDataViewModelVar?.hrValues?.startDateModel
-        mHrDataOutlet.mHrTextField2?.text = mHrDataViewModelVar?.hrValues?.fellowshipPeriodModel
-        mHrDataOutlet.mHrTextField4?.text = mHrDataViewModelVar?.hrValues?.companyJoinDateModel
-        mHrDataOutlet.mHrTextField5?.text = mHrDataViewModelVar?.hrValues?.companyLeaveDateModel
-        mHrDataOutlet.mHrTextField6?.text = mHrDataViewModelVar?.hrValues?.enggContractSignedModel
-        mHrDataOutlet.mHrTextField7?.text = mHrDataViewModelVar?.hrValues?.enggContractInitiatedModel
-        mHrDataOutlet.mHrTextField8?.text = mHrDataViewModelVar?.hrValues?.contractInitiatedModel
-        mHrDataOutlet.mHrTextField9?.text = mHrDataViewModelVar?.hrValues?.contractSignedModel
-        mHrDataOutlet.mHrTextField10?.text = mHrDataViewModelVar?.hrValues?.contractSignDateModel
-        mHrDataOutlet.mHrTextField11?.text = mHrDataViewModelVar?.hrValues?.initiateTransferModel
-        mHrDataOutlet.companyTextField?.text = mHrDataViewModelVar?.hrValues?.companyModel
-        mHrDataOutlet.employeeStatusTextField?.text = mHrDataViewModelVar?.hrValues?.employeeStatusModel
+        mHrDataOutlet.mHrTextField1?.text = mHrDataViewModelVar?.mHrValues?.mHiringCityModel
+        mHrDataOutlet.mHrTextField3?.text = mHrDataViewModelVar?.mHrValues?.mStartDateModel
+        mHrDataOutlet.mHrTextField2?.text = mHrDataViewModelVar?.mHrValues?.mFellowshipPeriodModel
+        mHrDataOutlet.mHrTextField4?.text = mHrDataViewModelVar?.mHrValues?.mCompanyJoinDateModel
+        mHrDataOutlet.mHrTextField5?.text = mHrDataViewModelVar?.mHrValues?.mCompanyLeaveDateModel
+        mHrDataOutlet.mHrTextField6?.text = mHrDataViewModelVar?.mHrValues?.mEnggContractSignedModel
+        mHrDataOutlet.mHrTextField7?.text = mHrDataViewModelVar?.mHrValues?.mEnggContractInitiatedModel
+        mHrDataOutlet.mHrTextField8?.text = mHrDataViewModelVar?.mHrValues?.mContractInitiatedModel
+        mHrDataOutlet.mHrTextField9?.text = mHrDataViewModelVar?.mHrValues?.mContractSignedModel
+        mHrDataOutlet.mHrTextField10?.text = mHrDataViewModelVar?.mHrValues?.mContractSignDateModel
+        mHrDataOutlet.mHrTextField11?.text = mHrDataViewModelVar?.mHrValues?.mInitiateTransferModel
+        mHrDataOutlet.companyTextField?.text = mHrDataViewModelVar?.mHrValues?.mCompanyModel
+        mHrDataOutlet.employeeStatusTextField?.text = mHrDataViewModelVar?.mHrValues?.mEmployeeStatusModel
     }
     
     
@@ -1040,7 +1040,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     
     // function to reload calendar
-    func calendarReload(keysArr:[String],valArray:[attendanceModel])
+    func calendarReload(keysArr:[String],valArray:[AttendanceModel])
     {
         mAttendanceOutlet.attendanceActivityIndicator?.stopAnimating()
         mAttendanceOutlet.attendanceActivityIndicator?.isHidden = true
@@ -1103,27 +1103,27 @@ extension ViewController : JTAppleCalendarViewDelegate
                         let key = mAttendanceKeys?[i]
                         if dateString == key {
                             let value = mAttendanceValues?[i]
-                            if value?.attendanceStatus == "Leave" && value?.markedStatus == "true"
+                            if value?.mAttendanceStatus == "Leave" && value?.mMarkedStatus == "true"
                             {
                                 mMyCustomCell.markImageView.image = UIImage(named: "L")
                                 self.mValueSet = true
                                 
                             }
-                            else if value?.attendanceStatus == "Present" && value?.markedStatus == "true"
+                            else if value?.mAttendanceStatus == "Present" && value?.mMarkedStatus == "true"
                             {
                                 
                                 mMyCustomCell.markImageView.image = UIImage(named: "ion-checkmark-round - Ionicons")
                                 self.mValueSet = true
                             }
                                 
-                            else if value?.attendanceStatus == "CompLeave" && value?.markedStatus == "true"
+                            else if value?.mAttendanceStatus == "CompLeave" && value?.mMarkedStatus == "true"
                             {
                                 
                                 mMyCustomCell.markImageView.image = UIImage(named: "C")
                                 self.mValueSet = true
                             }
                                 
-                            else if value?.attendanceStatus == "Unmarked" && value?.markedStatus == "false"
+                            else if value?.mAttendanceStatus == "Unmarked" && value?.mMarkedStatus == "false"
                             {
                                 
                                 mMyCustomCell.markImageView.image = UIImage(named: "ion-alert - Ionicons")
@@ -1189,11 +1189,11 @@ extension ViewController : JTAppleCalendarViewDelegate
                     if theDate == mAttendanceKeys?[i] {
                         let values = mAttendanceValues?[i]
                         mdateFound = true
-                        mAttendancePopupOutlet.inTimeLabel.text = values?.punchIn
-                        mAttendancePopupOutlet.outTimeLabel.text = values?.punchOut
-                        mAttendancePopupOutlet.leaveReasonTextView.text = values?.reason
-                        mAttendancePopupOutlet.markedStatusLabel.text = values?.markedStatus
-                        mAttendancePopupOutlet.attendanceStatusLabel.text = values?.attendanceStatus
+                        mAttendancePopupOutlet.inTimeLabel.text = values?.mPunchIn
+                        mAttendancePopupOutlet.outTimeLabel.text = values?.mPunchOut
+                        mAttendancePopupOutlet.leaveReasonTextView.text = values?.mReason
+                        mAttendancePopupOutlet.markedStatusLabel.text = values?.mMarkedStatus
+                        mAttendancePopupOutlet.attendanceStatusLabel.text = values?.mAttendanceStatus
                         mAttendancePopupOutlet.dateLabel.text = mDate1
                         mAttendancePopupOutlet.isHidden = false
                         self.mBlurView.isHidden = false
